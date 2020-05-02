@@ -2,6 +2,10 @@
 # Algorithmique pour le consensus d’ordres
 Code source de nos Travaux d'Étude et de Recherche. Plusieurs méthodes exactes ou approchées pour obtenir un consensus d'ordre. C'est-à-dire, transformer une relation binaire quelconque en une relation d'ordre partiel avec une perte d'information minimisée. Ces algorithmes servent le contexte bio-informatique de la cartographie génétique.
 
+> **Petite Integration Continue :** Une documentation de tout le projet est automatiquement générée par une action Github à chaque mise à jour de la branche `master`. Vous pouvez retrouver cette documentation complète sur [hareski.github.io/ConsensusOrdres](https://hareski.github.io/ConsensusOrdres/).
+Le status de déploiement de la documentation est actuellement :
+![Documentation](https://github.com/Hareski/ConsensusOrdres/workflows/Documentation/badge.svg)
+
 ## Organisation du dossier
 
 ## `/app`
@@ -10,7 +14,10 @@ Contient le fichier `main.cpp`. Il s'agit d'exemples d'utilisation du programme.
 
 ## `/doc`
 Documentation à partir du code source et des commentaires du programme qui doit être généré avec Doxygen : http://www.doxygen.nl/
-> **Note :** Contient aussi le fichier de configuration `Doxyfile` indiquant la configuration à suivre à Doxygen.
+
+Vous pouvez aussi retrouver directement la documentation complète sur [hareski.github.io/ConsensusOrdres](https://hareski.github.io/ConsensusOrdres/).
+
+> **Note :** Contient aussi le fichier de configuration `Doxyfile` indiquant la configuration à suivre à Doxygen. C'est cette configuration qui est utilisée pour le déploiement de la documentation automatique.
 
 ## `/data`
 Différentes données utilisées pour les exemples d'utilisation.

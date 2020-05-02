@@ -1,0 +1,23 @@
+name: Documentation
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    # First step: generate the documentation
+    - name: Doxygen generation
+      uses: mattnotmitt/doxygen-action@v1.1.0
+      with:
+        doxyfile-path: './doc/Doxyfile'
+        working-directory: '.'
+    # Second step: deploy static html
+    - name: Deploy HTML
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./doc/html
