@@ -25,7 +25,6 @@
 var NAVTREE =
 [
   [ "Algorithmique pour le consensus d’ordres", "index.html", [
-    [ "README", "md_data_result_test22aretes_g9__r_e_a_d_m_e.html", null ],
     [ "Algorithmique pour le consensus d’ordres", "md__r_e_a_d_m_e.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],

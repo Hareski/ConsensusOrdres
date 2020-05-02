@@ -438,382 +438,384 @@ $(document).ready(function(){initNavTree('_graphe_bicolore_8cpp_source.html','')
 <div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    <span class="keywordflow">return</span> res;</div>
 <div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;}</div>
 <div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160; </div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment">// TODO: a supprimer</span></div>
-<div class="line"><a name="l00455"></a><span class="lineno"><a class="line" href="class_graphe_bicolore.html#a0c5e2be3e3bf93aff8f5a7661f6961f4">  455</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="class_graphe_bicolore.html#a0c5e2be3e3bf93aff8f5a7661f6961f4">GrapheBicolore::testSymetrie</a>() {</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; ++i) {</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> v1 : voisinsVerts.at(i)) {</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;            <span class="keywordtype">bool</span> good = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;            <span class="keywordflow">for</span> (<span class="keyword">auto</span> v2: voisinsVerts.at(v1.sommet)) {</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;                <span class="keywordflow">if</span> (v2.sommet == i &amp;&amp; v1.active == v2.active) {</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;                    good = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;                }</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;            }</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;            <span class="keywordflow">if</span> (!voisinsVerts.at(v1.sommet).empty() &amp;&amp; !good) {</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;symétrie non-respecté&quot;</span>);</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;            }</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;        }</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    }</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;}</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160; </div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;<span class="keywordtype">bool</span> GrapheBicolore::mauvaisCycle() {</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    <a class="code" href="class_graphe_bicolore.html#a0c5e2be3e3bf93aff8f5a7661f6961f4">testSymetrie</a>();</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    std::vector&lt;int&gt; P = getSommetsNoirsParAdjacence();</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;    std::vector&lt;bool&gt; dejaVu;</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;    dejaVu.reserve(n);</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++) {</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;        dejaVu.push_back(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;<span class="keywordtype">bool</span> GrapheBicolore::mauvaisCycle() {</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    std::vector&lt;int&gt; P = getSommetsNoirsParAdjacence();</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    std::vector&lt;bool&gt; dejaVu;</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    dejaVu.reserve(n);</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++) {</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;        dejaVu.push_back(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    }</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160; </div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> &amp;s_noir : P) {</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> &amp;voisin_vert : voisinsVertsActifs(s_noir)) {</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;            <span class="keywordflow">if</span> (!dejaVu.at(voisin_vert)) {</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;                <span class="keywordtype">int</span> s_vert_1 = s_noir;</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;                <span class="keywordtype">int</span> s_vert_2 = voisin_vert;</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;                <span class="keywordflow">while</span> (s_vert_2 != -1 &amp;&amp; !estSommetNoir(s_vert_2)) {</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;                    dejaVu.at(s_vert_2) = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;                    <span class="keywordtype">int</span> temp = s_vert_2;</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;                    s_vert_2 = prochainSommetVert(s_vert_1, s_vert_2);</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;                    s_vert_1 = temp;</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;                }</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;                <span class="keywordflow">if</span> (s_vert_2 != -1 &amp;&amp; !testerAreteNoireActive(s_noir, s_vert_2)) {</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;                }</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;            }</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;        }</div>
 <div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;    }</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160; </div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> &amp;s_noir : P) {</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> &amp;voisin_vert : voisinsVertsActifs(s_noir)) {</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;            <span class="keywordflow">if</span> (!dejaVu.at(voisin_vert)) {</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;                <span class="keywordtype">int</span> s_vert_1 = s_noir;</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;                <span class="keywordtype">int</span> s_vert_2 = voisin_vert;</div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;                <span class="keywordflow">while</span> (s_vert_2 != -1 &amp;&amp; !estSommetNoir(s_vert_2)) {</div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;                    dejaVu.at(s_vert_2) = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;                    <span class="keywordtype">int</span> temp = s_vert_2;</div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;                    s_vert_2 = prochainSommetVert(s_vert_1, s_vert_2);</div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;                    s_vert_1 = temp;</div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;                }</div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;                <span class="keywordflow">if</span> (s_vert_2 != -1 &amp;&amp; !testerAreteNoireActive(s_noir, s_vert_2)) {</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;                }</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;            }</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;        }</div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;    }</div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;}</div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160; </div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;<span class="keywordtype">bool</span> GrapheBicolore::estSommetNoir(<span class="keywordtype">int</span> s) {</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;    <span class="keywordflow">if</span> (sommetsNoirs.empty()) {</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;    }</div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160; </div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;    <span class="comment">// Recherche dichotomique</span></div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;    <span class="keywordtype">int</span> deb = 0;</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;    <span class="keywordtype">int</span> fin = sommetsNoirs.size() - 1;</div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    <span class="keywordflow">while</span> (deb &lt;= fin) {</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;        <span class="keywordtype">int</span> milieu = (deb + fin) / 2;</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;        <span class="keywordflow">if</span> (sommetsNoirs.at(milieu) &gt; s) {</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;            fin = milieu - 1;</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (sommetsNoirs.at(milieu) &lt; s) {</div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;            deb = milieu + 1;</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;        }</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;    }</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;}</div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160; </div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;<span class="keywordtype">bool</span> GrapheBicolore::ajouterSommetNoir(<span class="keywordtype">int</span> s) {</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;    <span class="comment">// La liste est vide</span></div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;    <span class="keywordflow">if</span> (sommetsNoirs.empty()) {</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;        sommetsNoirs.push_back(s);</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;    }</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160; </div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;    <span class="comment">// Sinon recherche dichotomique</span></div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;    <span class="keywordtype">int</span> deb = 0;</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    <span class="keywordtype">int</span> fin = sommetsNoirs.size() - 1;</div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    <span class="keywordflow">while</span> (deb &lt;= fin) {</div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;        <span class="keywordtype">int</span> milieu = (deb + fin) / 2;</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;        <span class="keywordflow">if</span> (sommetsNoirs.at(milieu) &gt; s) {</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;            fin = milieu - 1;</div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (sommetsNoirs.at(milieu) &lt; s) {</div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;            deb = milieu + 1;</div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;        }</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;    }</div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;    sommetsNoirs.insert(sommetsNoirs.begin() + deb, s);</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;}</div>
-<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160; </div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;std::vector&lt;GrapheBicolore::Arete&gt; GrapheBicolore::aretesVertes() {</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;    <span class="keywordflow">return</span> listeAretesVertes;</div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;}</div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160; </div>
-<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;std::vector&lt;GrapheBicolore::Arete&gt; GrapheBicolore::selectionAretesVertes() {</div>
-<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;    std::vector&lt;GrapheBicolore::Arete&gt; listeInitiale = listeAretesVertes;</div>
-<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;    std::vector&lt;GrapheBicolore::Arete&gt; selection;</div>
-<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;    <span class="keywordflow">for</span> (Arete arete : listeAretesVertes) {</div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;        <span class="keywordflow">if</span> (estSommetNoir(arete.x) || estSommetNoir(arete.y)</div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;            || degreVert(arete.x) &gt; 2 || degreVert(arete.y) &gt; 2) {</div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;            selection.push_back(arete);</div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;        }</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;    }</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;    <span class="keywordflow">return</span> selection;</div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;}</div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160; </div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;std::vector&lt;GrapheBicolore::Arete&gt; GrapheBicolore::aretesVertesActives() {</div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;    std::vector&lt;GrapheBicolore::Arete&gt; aretes;</div>
-<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;    <span class="keywordflow">for</span> (Arete &amp;arete: aretesVertes()) {</div>
-<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;        <span class="keywordflow">if</span> (testerAreteVerteActive(arete.x, arete.y)) {</div>
-<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;            aretes.push_back(arete);</div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;        }</div>
-<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;    }</div>
-<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;    <span class="keywordflow">return</span> aretes;</div>
-<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;}</div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160; </div>
-<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;<span class="keywordtype">void</span> GrapheBicolore::activerToutesAretesVertes() {</div>
-<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;    <span class="keywordflow">for</span> (Arete &amp;arete: aretesVertes()) {</div>
-<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;        activerAreteVerte(arete.x, arete.y);</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;}</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160; </div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;<span class="keywordtype">bool</span> GrapheBicolore::estSommetNoir(<span class="keywordtype">int</span> s) {</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;    <span class="keywordflow">if</span> (sommetsNoirs.empty()) {</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    }</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160; </div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;    <span class="comment">// Recherche dichotomique</span></div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    <span class="keywordtype">int</span> deb = 0;</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    <span class="keywordtype">int</span> fin = sommetsNoirs.size() - 1;</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    <span class="keywordflow">while</span> (deb &lt;= fin) {</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;        <span class="keywordtype">int</span> milieu = (deb + fin) / 2;</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;        <span class="keywordflow">if</span> (sommetsNoirs.at(milieu) &gt; s) {</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;            fin = milieu - 1;</div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (sommetsNoirs.at(milieu) &lt; s) {</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;            deb = milieu + 1;</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;        }</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    }</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;}</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160; </div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="keywordtype">bool</span> GrapheBicolore::ajouterSommetNoir(<span class="keywordtype">int</span> s) {</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;    <span class="comment">// La liste est vide</span></div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;    <span class="keywordflow">if</span> (sommetsNoirs.empty()) {</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;        sommetsNoirs.push_back(s);</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;    }</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160; </div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;    <span class="comment">// Sinon recherche dichotomique</span></div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;    <span class="keywordtype">int</span> deb = 0;</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;    <span class="keywordtype">int</span> fin = sommetsNoirs.size() - 1;</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;    <span class="keywordflow">while</span> (deb &lt;= fin) {</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;        <span class="keywordtype">int</span> milieu = (deb + fin) / 2;</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;        <span class="keywordflow">if</span> (sommetsNoirs.at(milieu) &gt; s) {</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;            fin = milieu - 1;</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (sommetsNoirs.at(milieu) &lt; s) {</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;            deb = milieu + 1;</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;        }</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;    }</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;    sommetsNoirs.insert(sommetsNoirs.begin() + deb, s);</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;}</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160; </div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;std::vector&lt;GrapheBicolore::Arete&gt; GrapheBicolore::aretesVertes() {</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    <span class="keywordflow">return</span> listeAretesVertes;</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;}</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160; </div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;std::vector&lt;GrapheBicolore::Arete&gt; GrapheBicolore::selectionAretesVertes() {</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;    std::vector&lt;GrapheBicolore::Arete&gt; listeInitiale = listeAretesVertes;</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;    std::vector&lt;GrapheBicolore::Arete&gt; selection;</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;    <span class="keywordflow">for</span> (Arete arete : listeAretesVertes) {</div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;        <span class="keywordflow">if</span> (estSommetNoir(arete.x) || estSommetNoir(arete.y)</div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;            || degreVert(arete.x) &gt; 2 || degreVert(arete.y) &gt; 2) {</div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;            selection.push_back(arete);</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;        }</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;    }</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;    <span class="keywordflow">return</span> selection;</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;}</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160; </div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;std::vector&lt;GrapheBicolore::Arete&gt; GrapheBicolore::aretesVertesActives() {</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;    std::vector&lt;GrapheBicolore::Arete&gt; aretes;</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;    <span class="keywordflow">for</span> (Arete &amp;arete: aretesVertes()) {</div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;        <span class="keywordflow">if</span> (testerAreteVerteActive(arete.x, arete.y)) {</div>
+<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;            aretes.push_back(arete);</div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;        }</div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;    }</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;    <span class="keywordflow">return</span> aretes;</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;}</div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160; </div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;<span class="keywordtype">void</span> GrapheBicolore::activerToutesAretesVertes() {</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;    <span class="keywordflow">for</span> (Arete &amp;arete: aretesVertes()) {</div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;        activerAreteVerte(arete.x, arete.y);</div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;    }</div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;}</div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160; </div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;std::vector&lt;std::vector&lt;double&gt;&gt; GrapheBicolore::matriceAdjacenceActifsVerte(<span class="keywordtype">bool</span> tolererEquivalentesNoires) {</div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;    std::vector&lt;double&gt; ligne(n, 0);</div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;    std::vector&lt;std::vector&lt;double&gt;&gt; matrice(n, ligne);</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> a = 0; a &lt; n; ++a) {</div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> b : voisinsVertsActifs(a)) {</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;            <span class="keywordflow">if</span> (tolererEquivalentesNoires || !testerAreteNoireActive(a, b)) {</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;                matrice[a][b] = 1;</div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;            }</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;        }</div>
 <div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;    }</div>
-<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;}</div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160; </div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;std::vector&lt;std::vector&lt;double&gt;&gt; GrapheBicolore::matriceAdjacenceActifsVerte(<span class="keywordtype">bool</span> tolererEquivalentesNoires) {</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;    std::vector&lt;double&gt; ligne(n, 0);</div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;    std::vector&lt;std::vector&lt;double&gt;&gt; matrice(n, ligne);</div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> a = 0; a &lt; n; ++a) {</div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> b : voisinsVertsActifs(a)) {</div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;            <span class="keywordflow">if</span> (tolererEquivalentesNoires || !testerAreteNoireActive(a, b)) {</div>
-<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;                matrice[a][b] = 1;</div>
-<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;            }</div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;        }</div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;    }</div>
-<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;    <span class="keywordflow">return</span> matrice;</div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;}</div>
-<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160; </div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;std::vector&lt;std::vector&lt;double&gt;&gt; GrapheBicolore::denombrerCheminsVerts(<span class="keywordtype">int</span> tailleMax, <span class="keywordtype">bool</span> tolererEquivalentesNoires) {</div>
-<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;    std::vector&lt;std::vector&lt;double&gt;&gt; matriceVerte = matriceAdjacenceActifsVerte(tolererEquivalentesNoires);</div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;    std::vector&lt;std::vector&lt;std::vector&lt;double&gt;&gt;&gt; compteursAvecTaille = <a class="code" href="cycle_count_8h.html#a917f856829fd502d3c445095d53a82ea">pathsCount</a>(matriceVerte, tailleMax, <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;    std::vector&lt;double&gt; ligne(n, 0);</div>
-<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;    std::vector&lt;std::vector&lt;double&gt;&gt; compteurs(n, ligne);</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> taille = 1; taille &lt; compteursAvecTaille.size(); ++taille) {</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> a = 0; a &lt; n; ++a) {</div>
-<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> b = 0; b &lt; n; ++b) {</div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;                compteurs[a][b] += compteursAvecTaille[taille][a][b];</div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;            }</div>
-<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;        }</div>
-<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;    }</div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;    <span class="keywordflow">return</span> compteurs;</div>
-<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;}</div>
-<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160; </div>
-<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;<span class="keywordtype">double</span> GrapheBicolore::denombrerMauvaisCycles(<span class="keywordtype">int</span> tailleMax, std::vector&lt;int&gt; sommetsNoirs) {</div>
-<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;    <span class="comment">// Construction du tableau des chemins</span></div>
-<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;    std::vector&lt;std::vector&lt;double&gt;&gt; matriceVerte = matriceAdjacenceActifsVerte(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;    std::vector&lt;std::vector&lt;std::vector&lt;double&gt;&gt;&gt; compteursAvecTaille = <a class="code" href="cycle_count_8h.html#a917f856829fd502d3c445095d53a82ea">pathsCount</a>(matriceVerte, tailleMax, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160; </div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;    <span class="comment">// Compteur par segments</span></div>
-<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;    <span class="keywordtype">double</span> compteur = 0;</div>
-<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> tailleSegment = 2; tailleSegment &lt; sommetsNoirs.size(); ++tailleSegment) {</div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> s = 0; s &lt; sommetsNoirs.size() - tailleSegment; ++s) {</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> tailleChemin = 0; tailleChemin &lt; compteursAvecTaille.size(); ++tailleChemin) {</div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;                compteur += compteursAvecTaille[tailleChemin][sommetsNoirs[s]][sommetsNoirs[s + tailleSegment]];</div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;            }</div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;        }</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;    }</div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;    <span class="keywordflow">return</span> compteur;</div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;}</div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;    <span class="keywordflow">return</span> matrice;</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;}</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160; </div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;std::vector&lt;std::vector&lt;double&gt;&gt; GrapheBicolore::denombrerCheminsVerts(<span class="keywordtype">int</span> tailleMax, <span class="keywordtype">bool</span> tolererEquivalentesNoires) {</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;    std::vector&lt;std::vector&lt;double&gt;&gt; matriceVerte = matriceAdjacenceActifsVerte(tolererEquivalentesNoires);</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;    std::vector&lt;std::vector&lt;std::vector&lt;double&gt;&gt;&gt; compteursAvecTaille = <a class="code" href="cycle_count_8h.html#a917f856829fd502d3c445095d53a82ea">pathsCount</a>(matriceVerte, tailleMax, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;    std::vector&lt;double&gt; ligne(n, 0);</div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;    std::vector&lt;std::vector&lt;double&gt;&gt; compteurs(n, ligne);</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> taille = 1; taille &lt; compteursAvecTaille.size(); ++taille) {</div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> a = 0; a &lt; n; ++a) {</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> b = 0; b &lt; n; ++b) {</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;                compteurs[a][b] += compteursAvecTaille[taille][a][b];</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;            }</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;        }</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;    }</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;    <span class="keywordflow">return</span> compteurs;</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;}</div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160; </div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;<span class="keywordtype">double</span> GrapheBicolore::denombrerMauvaisCycles(<span class="keywordtype">int</span> tailleMax, std::vector&lt;int&gt; sommetsNoirs) {</div>
+<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;    <span class="comment">// Construction du tableau des chemins</span></div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;    std::vector&lt;std::vector&lt;double&gt;&gt; matriceVerte = matriceAdjacenceActifsVerte(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;    std::vector&lt;std::vector&lt;std::vector&lt;double&gt;&gt;&gt; compteursAvecTaille = <a class="code" href="cycle_count_8h.html#a917f856829fd502d3c445095d53a82ea">pathsCount</a>(matriceVerte, tailleMax, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160; </div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;    <span class="comment">// Compteur par segments</span></div>
+<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;    <span class="keywordtype">double</span> compteur = 0;</div>
+<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> tailleSegment = 2; tailleSegment &lt; sommetsNoirs.size(); ++tailleSegment) {</div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> s = 0; s &lt; sommetsNoirs.size() - tailleSegment; ++s) {</div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> tailleChemin = 0; tailleChemin &lt; compteursAvecTaille.size(); ++tailleChemin) {</div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;                compteur += compteursAvecTaille[tailleChemin][sommetsNoirs[s]][sommetsNoirs[s + tailleSegment]];</div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;            }</div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;        }</div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;    }</div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;    <span class="keywordflow">return</span> compteur;</div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;}</div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160; </div>
+<div class="line"><a name="l00659"></a><span class="lineno"><a class="line" href="class_graphe_bicolore.html#ada1675cb7d024e735add2dc18ae91fff">  659</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_graphe_bicolore.html#ada1675cb7d024e735add2dc18ae91fff">GrapheBicolore::algorithmeGlouton</a>(<span class="keywordtype">bool</span> simplifier, <span class="keywordtype">bool</span> debug) {</div>
+<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;    <span class="comment">// Initialisation de la liste des arêtes</span></div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;    activerToutesAretesVertes(); <span class="comment">// Réactivation avant algorithme</span></div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;    std::vector&lt;Arete&gt; aretes;</div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;    <span class="keywordflow">if</span> (simplifier) {</div>
+<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;        aretes = selectionAretesVertes();</div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;        aretes = aretesVertes();</div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;    }</div>
 <div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160; </div>
-<div class="line"><a name="l00677"></a><span class="lineno"><a class="line" href="class_graphe_bicolore.html#ada1675cb7d024e735add2dc18ae91fff">  677</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_graphe_bicolore.html#ada1675cb7d024e735add2dc18ae91fff">GrapheBicolore::algorithmeGlouton</a>(<span class="keywordtype">bool</span> simplifier, <span class="keywordtype">bool</span> debug) {</div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;    <span class="comment">// Initialisation de la liste des arêtes</span></div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;    activerToutesAretesVertes(); <span class="comment">// Réactivation avant algorithme</span></div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;    std::vector&lt;Arete&gt; aretes;</div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;    <span class="keywordflow">if</span> (simplifier) {</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;        aretes = selectionAretesVertes();</div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;        aretes = aretesVertes();</div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;    }</div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160; </div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;    <span class="comment">// On retire les arêtes dans l&#39;ordre de la liste</span></div>
-<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> nombreAretesRetirees = 1; nombreAretesRetirees &lt; aretes.size() + 1; ++nombreAretesRetirees) {</div>
-<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;        desactiverAreteVerte(aretes[nombreAretesRetirees - 1].x, aretes[nombreAretesRetirees - 1].y);</div>
-<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;        <span class="keywordflow">if</span> (debug) {</div>
-<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;L&#39;arête numéro &quot;</span> &lt;&lt; nombreAretesRetirees - 1 &lt;&lt; <span class="stringliteral">&quot; de &quot;</span> &lt;&lt; aretes[nombreAretesRetirees - 1].x</div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;                      &lt;&lt; <span class="stringliteral">&quot; à &quot;</span> &lt;&lt; aretes[nombreAretesRetirees - 1].y &lt;&lt; <span class="stringliteral">&quot; est retirée&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;        }</div>
-<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_graphe_bicolore.html#a2d3f5f8926c8af02a8e5ef48d57e63c9">estLinearisable</a>()) {</div>
-<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;            <span class="keywordflow">return</span> nombreAretesRetirees;</div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;        }</div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;    }</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;    <span class="comment">// Ne pas obtenir de solution n&#39;est pas un résultat possible, on lève une erreur d&#39;execution</span></div>
-<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;aucun résultat, sans arêtes vertes le graphe n&#39;est pas linéaire&quot;</span>);</div>
-<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;}</div>
-<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160; </div>
-<div class="line"><a name="l00711"></a><span class="lineno"><a class="line" href="class_graphe_bicolore.html#a08f216f155e3a40ff80fc4bee690170d">  711</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_graphe_bicolore.html#a08f216f155e3a40ff80fc4bee690170d">GrapheBicolore::heuristiqueDenombrement</a>(<span class="keywordtype">bool</span> simplifier, <span class="keywordtype">int</span> tailleChemin, <span class="keywordtype">bool</span> debug) {</div>
-<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;    <span class="comment">// Initialisation de la liste des arêtes et des valeurs initiales</span></div>
-<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;    activerToutesAretesVertes(); <span class="comment">// Réactivation avant algorithme</span></div>
-<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;    std::vector&lt;Arete&gt; aretes;</div>
-<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;    <span class="keywordflow">if</span> (simplifier) {</div>
-<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;        aretes = selectionAretesVertes();</div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;        aretes = aretesVertes();</div>
-<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;    }</div>
-<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;    std::vector&lt;int&gt; chaineSommetsNoirs = getSommetsNoirsParAdjacence();</div>
-<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;    <span class="keywordtype">double</span> compteurMauvaisCycles = denombrerMauvaisCycles(tailleChemin, chaineSommetsNoirs);</div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;    std::vector&lt;std::vector&lt;double&gt;&gt; compteurCheminsVerts = denombrerCheminsVerts(tailleChemin, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;    <span class="keywordtype">double</span> poids[aretes.size()];</div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160; </div>
-<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;    <span class="comment">// Calculs des poids</span></div>
-<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; aretes.size(); ++i) {</div>
-<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;        poids[i] = 0;</div>
-<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;        <span class="comment">// Degré vert</span></div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;        <span class="keywordtype">int</span> degre = degreVert(aretes[i].x);</div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;        <span class="keywordflow">if</span> (degre &gt; 2) { poids[i] = degre - 2; }</div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;        degre = degreVert(aretes[i].y);</div>
-<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;        <span class="keywordflow">if</span> (degre &gt; 2) { poids[i] += degre - 2; }</div>
-<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;        <span class="comment">// Cycle vert</span></div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;        poids[i] += compteurCheminsVerts[aretes[i].x][aretes[i].y];</div>
-<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;        <span class="comment">// Mauvais cycles</span></div>
-<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;        desactiverAreteVerte(aretes[i].x, aretes[i].y);</div>
-<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;        <span class="keywordtype">double</span> mauvaisCyclesArete =</div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;                compteurMauvaisCycles - denombrerMauvaisCycles(tailleChemin, chaineSommetsNoirs);</div>
-<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;        poids[i] += mauvaisCyclesArete;</div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;        activerAreteVerte(aretes[i].x, aretes[i].y);</div>
-<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;        <span class="keywordflow">if</span> (debug) {</div>
-<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;L&#39;arête numéro &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; de &quot;</span> &lt;&lt; aretes[i].x &lt;&lt; <span class="stringliteral">&quot; à &quot;</span> &lt;&lt; aretes[i].y</div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;                      &lt;&lt; <span class="stringliteral">&quot; a un poids de &quot;</span> &lt;&lt; poids[i] &lt;&lt; <span class="stringliteral">&quot; avec &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;                      compteurCheminsVerts[aretes[i].x][aretes[i].y] &lt;&lt; <span class="stringliteral">&quot; cycle(s) vert(s) et &quot;</span></div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;                      &lt;&lt; mauvaisCyclesArete &lt;&lt; <span class="stringliteral">&quot; mauvais cycle(s).&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;        }</div>
-<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;    }</div>
-<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160; </div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;    <span class="comment">// On retire les arêtes par ordre de poids</span></div>
-<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> nombreAretesRetirees = 1; nombreAretesRetirees &lt; aretes.size(); ++nombreAretesRetirees) {</div>
-<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;        <span class="keywordtype">int</span> indiceMaximum = -1;</div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;        <span class="keywordtype">double</span> poidsMaximum = -1;</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; aretes.size(); ++j) {</div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;            <span class="keywordflow">if</span> (poids[j] &gt; poidsMaximum) {</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;                indiceMaximum = j;</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;                poidsMaximum = poids[j];</div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;            }</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;        }</div>
-<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;        desactiverAreteVerte(aretes[indiceMaximum].x, aretes[indiceMaximum].y);</div>
-<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;        <span class="keywordflow">if</span> (debug) {</div>
-<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;L&#39;arête numéro &quot;</span> &lt;&lt; indiceMaximum &lt;&lt; <span class="stringliteral">&quot; de &quot;</span> &lt;&lt; aretes[indiceMaximum].x &lt;&lt; <span class="stringliteral">&quot; à &quot;</span></div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;                      &lt;&lt; aretes[indiceMaximum].y &lt;&lt; <span class="stringliteral">&quot; est retirée&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;        }</div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_graphe_bicolore.html#a2d3f5f8926c8af02a8e5ef48d57e63c9">estLinearisable</a>()) {</div>
-<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;            <span class="keywordflow">return</span> nombreAretesRetirees;</div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;    <span class="comment">// On désactive les arêtes</span></div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; aretes.size(); ++i) {</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;        desactiverAreteVerte(aretes[i].x, aretes[i].y);</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;    }</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160; </div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;    <span class="comment">// On ajoute l&#39;arête si le graphe reste linéarisable</span></div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;    <span class="keywordtype">int</span> nombreAretesRetirees = 0;</div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> numArete = 0; numArete &lt; aretes.size(); ++numArete) {</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;        activerAreteVerte(aretes[numArete].x, aretes[numArete].y);</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_graphe_bicolore.html#a2d3f5f8926c8af02a8e5ef48d57e63c9">estLinearisable</a>()) {</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;            desactiverAreteVerte(aretes[numArete].x, aretes[numArete].y);</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;            nombreAretesRetirees++;</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;            <span class="keywordflow">if</span> (debug) {</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;L&#39;arête numéro &quot;</span> &lt;&lt; numArete &lt;&lt; <span class="stringliteral">&quot; de &quot;</span> &lt;&lt; aretes[numArete].x</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;                          &lt;&lt; <span class="stringliteral">&quot; à &quot;</span> &lt;&lt; aretes[numArete].y &lt;&lt; <span class="stringliteral">&quot; est retirée&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;            }</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;        }</div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;    }</div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_graphe_bicolore.html#a2d3f5f8926c8af02a8e5ef48d57e63c9">estLinearisable</a>()) {</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;        <span class="keywordflow">return</span> nombreAretesRetirees;</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;    }</div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;    <span class="comment">// Ne pas obtenir de solution n&#39;est pas un résultat possible, on lève une erreur d&#39;execution</span></div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;aucun résultat, sans arêtes vertes le graphe n&#39;est pas linéaire&quot;</span>);</div>
+<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;}</div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160; </div>
+<div class="line"><a name="l00703"></a><span class="lineno"><a class="line" href="class_graphe_bicolore.html#a08f216f155e3a40ff80fc4bee690170d">  703</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_graphe_bicolore.html#a08f216f155e3a40ff80fc4bee690170d">GrapheBicolore::heuristiqueDenombrement</a>(<span class="keywordtype">bool</span> simplifier, <span class="keywordtype">int</span> tailleChemin, <span class="keywordtype">bool</span> debug) {</div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;    <span class="comment">// Initialisation de la liste des arêtes et des valeurs initiales</span></div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;    activerToutesAretesVertes(); <span class="comment">// Réactivation avant algorithme</span></div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;    std::vector&lt;Arete&gt; aretes;</div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;    <span class="keywordflow">if</span> (simplifier) {</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;        aretes = selectionAretesVertes();</div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;        aretes = aretesVertes();</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;    }</div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;    std::vector&lt;int&gt; chaineSommetsNoirs = getSommetsNoirsParAdjacence();</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;    <span class="keywordtype">double</span> compteurMauvaisCycles = denombrerMauvaisCycles(tailleChemin, chaineSommetsNoirs);</div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;    std::vector&lt;std::vector&lt;double&gt;&gt; compteurCheminsVerts = denombrerCheminsVerts(tailleChemin, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;    <span class="keywordtype">double</span> poids[aretes.size()];</div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160; </div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;    <span class="comment">// Calculs des poids</span></div>
+<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; aretes.size(); ++i) {</div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;        poids[i] = 0;</div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;        <span class="comment">// Degré vert</span></div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;        <span class="keywordtype">int</span> degre = degreVert(aretes[i].x);</div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;        <span class="keywordflow">if</span> (degre &gt; 2) { poids[i] = degre - 2; }</div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;        degre = degreVert(aretes[i].y);</div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;        <span class="keywordflow">if</span> (degre &gt; 2) { poids[i] += degre - 2; }</div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;        <span class="comment">// Cycle vert</span></div>
+<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;        poids[i] += compteurCheminsVerts[aretes[i].x][aretes[i].y];</div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;        <span class="comment">// Mauvais cycles</span></div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;        desactiverAreteVerte(aretes[i].x, aretes[i].y);</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;        <span class="keywordtype">double</span> mauvaisCyclesArete =</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;                compteurMauvaisCycles - denombrerMauvaisCycles(tailleChemin, chaineSommetsNoirs);</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;        poids[i] += mauvaisCyclesArete;</div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;        activerAreteVerte(aretes[i].x, aretes[i].y);</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;        <span class="keywordflow">if</span> (debug) {</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;L&#39;arête numéro &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; de &quot;</span> &lt;&lt; aretes[i].x &lt;&lt; <span class="stringliteral">&quot; à &quot;</span> &lt;&lt; aretes[i].y</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;                      &lt;&lt; <span class="stringliteral">&quot; a un poids de &quot;</span> &lt;&lt; poids[i] &lt;&lt; <span class="stringliteral">&quot; avec &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;                      compteurCheminsVerts[aretes[i].x][aretes[i].y] &lt;&lt; <span class="stringliteral">&quot; cycle(s) vert(s) et &quot;</span></div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;                      &lt;&lt; mauvaisCyclesArete &lt;&lt; <span class="stringliteral">&quot; mauvais cycle(s).&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;        }</div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;    }</div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160; </div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;    <span class="comment">// On désactive les arêtes</span></div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; aretes.size(); ++i) {</div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;        desactiverAreteVerte(aretes[i].x, aretes[i].y);</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;    }</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160; </div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;    <span class="comment">// On active les arêtes par ordre de poids</span></div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;    <span class="keywordtype">int</span> nombreAretesRetirees = 0;</div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> numArete = 1; numArete &lt; aretes.size(); ++numArete) {</div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;        <span class="keywordtype">int</span> indiceMaximum = -1;</div>
+<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;        <span class="keywordtype">double</span> poidsMaximum = -1;</div>
+<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; aretes.size(); ++j) {</div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;            <span class="keywordflow">if</span> (poids[j] &gt; poidsMaximum) {</div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;                indiceMaximum = j;</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;                poidsMaximum = poids[j];</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;            }</div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;        }</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;        activerAreteVerte(aretes[indiceMaximum].x, aretes[indiceMaximum].y);</div>
+<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;        <span class="comment">// Si le graphe n&#39;est plus linéarisable, on retire l&#39;arête</span></div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_graphe_bicolore.html#a2d3f5f8926c8af02a8e5ef48d57e63c9">estLinearisable</a>()) {</div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;            desactiverAreteVerte(aretes[indiceMaximum].x, aretes[indiceMaximum].y);</div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;            nombreAretesRetirees++;</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;            <span class="keywordflow">if</span> (debug) {</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;L&#39;arête numéro &quot;</span> &lt;&lt; indiceMaximum &lt;&lt; <span class="stringliteral">&quot; de &quot;</span> &lt;&lt; aretes[indiceMaximum].x &lt;&lt; <span class="stringliteral">&quot; à &quot;</span></div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;                          &lt;&lt; aretes[indiceMaximum].y &lt;&lt; <span class="stringliteral">&quot; est retirée&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;            }</div>
 <div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;        }</div>
 <div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;        poids[indiceMaximum] = -1;</div>
 <div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;    }</div>
-<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;    <span class="comment">// Ne pas obtenir de solution n&#39;est pas un résultat possible, on lève une erreur d&#39;execution</span></div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;aucun résultat, sans arêtes vertes le graphe n&#39;est pas linéaire&quot;</span>);</div>
-<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;}</div>
-<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160; </div>
-<div class="line"><a name="l00781"></a><span class="lineno"><a class="line" href="class_graphe_bicolore.html#a2b693b85ad342c4ca3328044d05a8ed6">  781</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_graphe_bicolore.html#a2b693b85ad342c4ca3328044d05a8ed6">GrapheBicolore::algorithmeExact</a>(<span class="keywordtype">bool</span> simplifier, <span class="keywordtype">bool</span> debug) {</div>
-<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;    <span class="comment">// Initialisation de la liste des arêtes</span></div>
-<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;    activerToutesAretesVertes(); <span class="comment">// Réactivation avant algorithme</span></div>
-<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;    std::vector&lt;Arete&gt; aretes;</div>
-<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;    <span class="keywordflow">if</span> (simplifier) {</div>
-<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;        aretes = selectionAretesVertes();</div>
-<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;        aretes = aretesVertes();</div>
-<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;    }</div>
-<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160; </div>
-<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> nombreAretesVertes = aretes.size();</div>
-<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> nombreAretesRetirees = 0; nombreAretesRetirees &lt;= nombreAretesVertes; ++nombreAretesRetirees) {</div>
-<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;        <span class="comment">// Initialisation du tableau binaire des arêtes à ajouter (=faux) ou non (=vrai)</span></div>
-<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;        <span class="keyword">auto</span> *tableauBinaireAretes = <span class="keyword">new</span> <a class="code" href="class_tableau_binaire.html">TableauBinaire</a>(nombreAretesVertes, nombreAretesRetirees);</div>
-<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160; </div>
-<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;        <span class="comment">// Boucle sur la cardinalité en commençant par retiré le moins d&#39;arêtes possible</span></div>
-<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;        <span class="keywordflow">do</span> {</div>
-<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;            <span class="comment">// Génération du vecteur d&#39;arêtes vertes pour l&#39;instance à tester selon tableauBinaireAretes</span></div>
-<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;            <span class="keywordflow">for</span> (<span class="keyword">auto</span> aretesVerte : aretes) {</div>
-<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;                <span class="keywordtype">bool</span> val = tableauBinaireAretes-&gt;valeurSuivante(); <span class="comment">// On récupère la prochaine valeur</span></div>
-<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;                <span class="keywordflow">if</span> (debug) { std::cout &lt;&lt; val; }</div>
-<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;                <span class="keywordflow">if</span> (!val) { activerAreteVerte(aretesVerte.x, aretesVerte.y); }</div>
-<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;                <span class="keywordflow">else</span> { desactiverAreteVerte(aretesVerte.x, aretesVerte.y); }</div>
-<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;            }</div>
-<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;            <span class="keywordflow">if</span> (debug) { std::cout &lt;&lt; std::endl; }</div>
-<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;            <span class="comment">// Test de la linéarité de l&#39;instance courante</span></div>
-<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_graphe_bicolore.html#a2d3f5f8926c8af02a8e5ef48d57e63c9">estLinearisable</a>()) {</div>
-<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;                <span class="keywordflow">if</span> (debug) {</div>
-<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;                    <span class="keywordflow">for</span> (<span class="keyword">auto</span> aretesVerte : aretes) {</div>
-<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;                        <span class="comment">// Le tableau binaire boucle une fois la dernière valeur obtenue</span></div>
-<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;                        <span class="comment">// On aura donc les mêmes valeurs que précédemment</span></div>
-<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;                        <span class="keywordtype">bool</span> val = tableauBinaireAretes-&gt;valeurSuivante();</div>
-<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;                        <span class="keywordflow">if</span> (val) {</div>
-<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;                            std::cout &lt;&lt; <span class="stringliteral">&quot;L&#39;arête de &quot;</span> &lt;&lt; aretesVerte.x &lt;&lt; <span class="stringliteral">&quot; à &quot;</span></div>
-<div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;                                      &lt;&lt; aretesVerte.y &lt;&lt; <span class="stringliteral">&quot; est retirée dans la solution&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;                        }</div>
-<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;                    }</div>
-<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;                }</div>
-<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;                <a class="code" href="class_graphe_bicolore.html#a2d3f5f8926c8af02a8e5ef48d57e63c9">estLinearisable</a>();</div>
-<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;                <span class="keywordflow">return</span> nombreAretesRetirees;</div>
-<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;            }</div>
-<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;        } <span class="keywordflow">while</span> (tableauBinaireAretes-&gt;genererProchain()); <span class="comment">// Sinon on cherche le prochain</span></div>
-<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;        <span class="comment">// Boucle sur la cardinalité en commençant par retiré le moins d&#39;arêtes possible</span></div>
-<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;    }</div>
-<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;    <span class="comment">// Ne pas obtenir de solution n&#39;est pas un résultat possible, on lève une erreur d&#39;execution</span></div>
-<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;aucun résultat, sans arêtes vertes le graphe n&#39;est pas linéaire&quot;</span>);</div>
-<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;}</div>
-<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160; </div>
-<div class="line"><a name="l00833"></a><span class="lineno"><a class="line" href="class_graphe_bicolore.html#a8960915656267ee9decdad02e0a35e31">  833</a></span>&#160;std::vector&lt;int&gt; <a class="code" href="class_graphe_bicolore.html#a8960915656267ee9decdad02e0a35e31">GrapheBicolore::enumeration</a>() {</div>
-<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="class_graphe_bicolore.html#a2d3f5f8926c8af02a8e5ef48d57e63c9">estLinearisable</a>()) {</div>
-<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;énumération d&#39;un graphe non linéarisé&quot;</span>);</div>
-<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;    }</div>
-<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;    <span class="keyword">const</span> std::vector&lt;int&gt; &amp;chaineNoir = getSommetsNoirsParAdjacence();</div>
-<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160; </div>
-<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;    std::vector&lt;int&gt; listeEnum;</div>
-<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;    listeEnum.reserve(n);</div>
-<div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160;    <span class="keywordtype">bool</span> dejaVu[n];</div>
-<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; ++i) {</div>
-<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;        dejaVu[i] = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;    }</div>
-<div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160; </div>
-<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> sommetNoir : chaineNoir) {</div>
-<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;        <span class="keyword">const</span> std::vector&lt;int&gt; &amp;voisins = voisinsVertsActifs(sommetNoir);</div>
-<div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;        std::vector&lt;int&gt; chaine[voisins.size()]; <span class="comment">// Maximum 2</span></div>
-<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;        <span class="keywordtype">bool</span> premiereGauche = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;        <span class="keywordflow">if</span> (!voisins.empty()) { <span class="comment">// Le sommet noir à des voisins verts</span></div>
-<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;            <span class="comment">// On boucle 1 ou 2 fois selon le nombre de voisins verts</span></div>
-<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> numeroChaine = 0; numeroChaine &lt; voisins.size(); ++numeroChaine) {</div>
-<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;                <span class="keywordtype">int</span> courant = voisins[numeroChaine]; <span class="comment">// Le voisin est choisi arbitrairement</span></div>
-<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;                <span class="keywordtype">int</span> precedent = sommetNoir; <span class="comment">// Son premier prédécesseur est le sommet noir</span></div>
-<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;                <span class="keywordflow">while</span> (courant != -1 &amp;&amp; !dejaVu[courant] &amp;&amp; !estSommetNoir(courant)) {</div>
-<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;                    chaine[numeroChaine].push_back(courant);</div>
-<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;                    dejaVu[courant] = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;                    <span class="keywordtype">int</span> suivant = prochainSommetVert(precedent, courant);</div>
-<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;                    precedent = courant;</div>
-<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;                    courant = suivant;</div>
-<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;                }</div>
-<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;                <span class="comment">// Si on le tant que s&#39;arrête avec un sommet noir alors la chaine doit être à droite</span></div>
-<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;                <span class="keywordflow">if</span> (numeroChaine == 0 &amp;&amp; estSommetNoir(courant)) {</div>
-<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;                    premiereGauche = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;                }</div>
-<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;            }</div>
-<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;            dejaVu[sommetNoir] = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;            <span class="keywordflow">if</span> (premiereGauche) { <span class="comment">// La chaine[0] doit être à gauche et retournée</span></div>
-<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = chaine[0].size() - 1; j &gt;= 0; --j) {</div>
-<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;                    listeEnum.push_back(chaine[0][j]);</div>
-<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;                }</div>
-<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;                listeEnum.push_back(sommetNoir);</div>
-<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;                <span class="keywordflow">if</span> (voisins.size() == 2) {</div>
-<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;                    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k : chaine[1]) {</div>
-<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;                        listeEnum.push_back(k);</div>
-<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;                    }</div>
-<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;                }</div>
-<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;            } <span class="keywordflow">else</span> { <span class="comment">// La chaine[1] doit être à gauche et retournée (elle peut être vide aussi)</span></div>
-<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;                <span class="keywordflow">if</span> (voisins.size() == 2) {</div>
-<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160;                    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = chaine[1].size() - 1; j &gt;= 0; --j) {</div>
-<div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160;                        listeEnum.push_back(chaine[1][j]);</div>
-<div class="line"><a name="l00882"></a><span class="lineno">  882</span>&#160;                    }</div>
-<div class="line"><a name="l00883"></a><span class="lineno">  883</span>&#160;                }</div>
-<div class="line"><a name="l00884"></a><span class="lineno">  884</span>&#160;                listeEnum.push_back(sommetNoir);</div>
-<div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k : chaine[0]) {</div>
-<div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;                    listeEnum.push_back(k);</div>
-<div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;                }</div>
-<div class="line"><a name="l00888"></a><span class="lineno">  888</span>&#160;            }</div>
-<div class="line"><a name="l00889"></a><span class="lineno">  889</span>&#160;        } <span class="keywordflow">else</span> { <span class="comment">// Le sommet noir n&#39;a pas de voisin</span></div>
-<div class="line"><a name="l00890"></a><span class="lineno">  890</span>&#160;            listeEnum.push_back(sommetNoir);</div>
-<div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;        }</div>
-<div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;    }</div>
-<div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;    <span class="keywordflow">return</span> listeEnum;</div>
-<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;}</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_graphe_bicolore.html#a2d3f5f8926c8af02a8e5ef48d57e63c9">estLinearisable</a>()) {</div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;        <span class="keywordflow">return</span> nombreAretesRetirees;</div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;    }</div>
+<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;    <span class="comment">// Ne pas obtenir de solution n&#39;est pas un résultat possible, on lève une erreur d&#39;execution</span></div>
+<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;aucun résultat, sans arêtes vertes le graphe n&#39;est pas linéaire&quot;</span>);</div>
+<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;}</div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160; </div>
+<div class="line"><a name="l00784"></a><span class="lineno"><a class="line" href="class_graphe_bicolore.html#a2b693b85ad342c4ca3328044d05a8ed6">  784</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_graphe_bicolore.html#a2b693b85ad342c4ca3328044d05a8ed6">GrapheBicolore::algorithmeExact</a>(<span class="keywordtype">bool</span> simplifier, <span class="keywordtype">bool</span> debug) {</div>
+<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;    <span class="comment">// Initialisation de la liste des arêtes</span></div>
+<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;    activerToutesAretesVertes(); <span class="comment">// Réactivation avant algorithme</span></div>
+<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;    std::vector&lt;Arete&gt; aretes;</div>
+<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;    <span class="keywordflow">if</span> (simplifier) {</div>
+<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;        aretes = selectionAretesVertes();</div>
+<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;        aretes = aretesVertes();</div>
+<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;    }</div>
+<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160; </div>
+<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> nombreAretesVertes = aretes.size();</div>
+<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> nombreAretesRetirees = 0; nombreAretesRetirees &lt;= nombreAretesVertes; ++nombreAretesRetirees) {</div>
+<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;        <span class="comment">// Initialisation du tableau binaire des arêtes à ajouter (=faux) ou non (=vrai)</span></div>
+<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;        <span class="keyword">auto</span> *tableauBinaireAretes = <span class="keyword">new</span> <a class="code" href="class_tableau_binaire.html">TableauBinaire</a>(nombreAretesVertes, nombreAretesRetirees);</div>
+<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160; </div>
+<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;        <span class="comment">// Boucle sur la cardinalité en commençant par retiré le moins d&#39;arêtes possible</span></div>
+<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;        <span class="keywordflow">do</span> {</div>
+<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;            <span class="comment">// Génération du vecteur d&#39;arêtes vertes pour l&#39;instance à tester selon tableauBinaireAretes</span></div>
+<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;            <span class="keywordflow">for</span> (<span class="keyword">auto</span> aretesVerte : aretes) {</div>
+<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;                <span class="keywordtype">bool</span> val = tableauBinaireAretes-&gt;valeurSuivante(); <span class="comment">// On récupère la prochaine valeur</span></div>
+<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;                <span class="keywordflow">if</span> (debug) { std::cout &lt;&lt; val; }</div>
+<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;                <span class="keywordflow">if</span> (!val) { activerAreteVerte(aretesVerte.x, aretesVerte.y); }</div>
+<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;                <span class="keywordflow">else</span> { desactiverAreteVerte(aretesVerte.x, aretesVerte.y); }</div>
+<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;            }</div>
+<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;            <span class="keywordflow">if</span> (debug) { std::cout &lt;&lt; std::endl; }</div>
+<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;            <span class="comment">// Test de la linéarité de l&#39;instance courante</span></div>
+<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_graphe_bicolore.html#a2d3f5f8926c8af02a8e5ef48d57e63c9">estLinearisable</a>()) {</div>
+<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;                <span class="keywordflow">if</span> (debug) {</div>
+<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;                    <span class="keywordflow">for</span> (<span class="keyword">auto</span> aretesVerte : aretes) {</div>
+<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;                        <span class="comment">// Le tableau binaire boucle une fois la dernière valeur obtenue</span></div>
+<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;                        <span class="comment">// On aura donc les mêmes valeurs que précédemment</span></div>
+<div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;                        <span class="keywordtype">bool</span> val = tableauBinaireAretes-&gt;valeurSuivante();</div>
+<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;                        <span class="keywordflow">if</span> (val) {</div>
+<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;                            std::cout &lt;&lt; <span class="stringliteral">&quot;L&#39;arête de &quot;</span> &lt;&lt; aretesVerte.x &lt;&lt; <span class="stringliteral">&quot; à &quot;</span></div>
+<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;                                      &lt;&lt; aretesVerte.y &lt;&lt; <span class="stringliteral">&quot; est retirée dans la solution&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;                        }</div>
+<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;                    }</div>
+<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;                }</div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;                <a class="code" href="class_graphe_bicolore.html#a2d3f5f8926c8af02a8e5ef48d57e63c9">estLinearisable</a>();</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;                <span class="keywordflow">return</span> nombreAretesRetirees;</div>
+<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;            }</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;        } <span class="keywordflow">while</span> (tableauBinaireAretes-&gt;genererProchain()); <span class="comment">// Sinon on cherche le prochain</span></div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;        <span class="comment">// Boucle sur la cardinalité en commençant par retiré le moins d&#39;arêtes possible</span></div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;    }</div>
+<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;    <span class="comment">// Ne pas obtenir de solution n&#39;est pas un résultat possible, on lève une erreur d&#39;execution</span></div>
+<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;aucun résultat, sans arêtes vertes le graphe n&#39;est pas linéaire&quot;</span>);</div>
+<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;}</div>
+<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160; </div>
+<div class="line"><a name="l00836"></a><span class="lineno"><a class="line" href="class_graphe_bicolore.html#a8960915656267ee9decdad02e0a35e31">  836</a></span>&#160;std::vector&lt;int&gt; <a class="code" href="class_graphe_bicolore.html#a8960915656267ee9decdad02e0a35e31">GrapheBicolore::enumeration</a>() {</div>
+<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="class_graphe_bicolore.html#a2d3f5f8926c8af02a8e5ef48d57e63c9">estLinearisable</a>()) {</div>
+<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;énumération d&#39;un graphe non linéarisé&quot;</span>);</div>
+<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;    }</div>
+<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;    <span class="keyword">const</span> std::vector&lt;int&gt; &amp;chaineNoir = getSommetsNoirsParAdjacence();</div>
+<div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160; </div>
+<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;    std::vector&lt;int&gt; listeEnum;</div>
+<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;    listeEnum.reserve(n);</div>
+<div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;    <span class="keywordtype">bool</span> dejaVu[n];</div>
+<div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; ++i) {</div>
+<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;        dejaVu[i] = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;    }</div>
+<div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160; </div>
+<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> sommetNoir : chaineNoir) {</div>
+<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;        <span class="keyword">const</span> std::vector&lt;int&gt; &amp;voisins = voisinsVertsActifs(sommetNoir);</div>
+<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;        std::vector&lt;int&gt; chaine[voisins.size()]; <span class="comment">// Maximum 2</span></div>
+<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;        <span class="keywordtype">bool</span> premiereGauche = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;        <span class="keywordflow">if</span> (!voisins.empty()) { <span class="comment">// Le sommet noir à des voisins verts</span></div>
+<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;            <span class="comment">// On boucle 1 ou 2 fois selon le nombre de voisins verts</span></div>
+<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> numeroChaine = 0; numeroChaine &lt; voisins.size(); ++numeroChaine) {</div>
+<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;                <span class="keywordtype">int</span> courant = voisins[numeroChaine]; <span class="comment">// Le voisin est choisi arbitrairement</span></div>
+<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;                <span class="keywordtype">int</span> precedent = sommetNoir; <span class="comment">// Son premier prédécesseur est le sommet noir</span></div>
+<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;                <span class="keywordflow">while</span> (courant != -1 &amp;&amp; !dejaVu[courant] &amp;&amp; !estSommetNoir(courant)) {</div>
+<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;                    chaine[numeroChaine].push_back(courant);</div>
+<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;                    dejaVu[courant] = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;                    <span class="keywordtype">int</span> suivant = prochainSommetVert(precedent, courant);</div>
+<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;                    precedent = courant;</div>
+<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;                    courant = suivant;</div>
+<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;                }</div>
+<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;                <span class="comment">// Si on le tant que s&#39;arrête avec un sommet noir alors la chaine doit être à droite</span></div>
+<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;                <span class="keywordflow">if</span> (numeroChaine == 0 &amp;&amp; estSommetNoir(courant)) {</div>
+<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;                    premiereGauche = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;                }</div>
+<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;            }</div>
+<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;            dejaVu[sommetNoir] = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;            <span class="keywordflow">if</span> (premiereGauche) { <span class="comment">// La chaine[0] doit être à gauche et retournée</span></div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = chaine[0].size() - 1; j &gt;= 0; --j) {</div>
+<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;                    listeEnum.push_back(chaine[0][j]);</div>
+<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;                }</div>
+<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;                listeEnum.push_back(sommetNoir);</div>
+<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;                <span class="keywordflow">if</span> (voisins.size() == 2) {</div>
+<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;                    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k : chaine[1]) {</div>
+<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;                        listeEnum.push_back(k);</div>
+<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;                    }</div>
+<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160;                }</div>
+<div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160;            } <span class="keywordflow">else</span> { <span class="comment">// La chaine[1] doit être à gauche et retournée (elle peut être vide aussi)</span></div>
+<div class="line"><a name="l00882"></a><span class="lineno">  882</span>&#160;                <span class="keywordflow">if</span> (voisins.size() == 2) {</div>
+<div class="line"><a name="l00883"></a><span class="lineno">  883</span>&#160;                    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = chaine[1].size() - 1; j &gt;= 0; --j) {</div>
+<div class="line"><a name="l00884"></a><span class="lineno">  884</span>&#160;                        listeEnum.push_back(chaine[1][j]);</div>
+<div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160;                    }</div>
+<div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;                }</div>
+<div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;                listeEnum.push_back(sommetNoir);</div>
+<div class="line"><a name="l00888"></a><span class="lineno">  888</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k : chaine[0]) {</div>
+<div class="line"><a name="l00889"></a><span class="lineno">  889</span>&#160;                    listeEnum.push_back(k);</div>
+<div class="line"><a name="l00890"></a><span class="lineno">  890</span>&#160;                }</div>
+<div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;            }</div>
+<div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;        } <span class="keywordflow">else</span> { <span class="comment">// Le sommet noir n&#39;a pas de voisin</span></div>
+<div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;            listeEnum.push_back(sommetNoir);</div>
+<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;        }</div>
+<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;    }</div>
+<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;    <span class="keywordflow">return</span> listeEnum;</div>
+<div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="a_tableau_binaire_8h_html"><div class="ttname"><a href="_tableau_binaire_8h.html">TableauBinaire.h</a></div></div>
 <div class="ttc" id="aclass_graphe_bicolore_html_a71754650f90ed625a782bf9b5ebf1cb9"><div class="ttname"><a href="class_graphe_bicolore.html#a71754650f90ed625a782bf9b5ebf1cb9">GrapheBicolore::fichierTikz</a></div><div class="ttdeci">void fichierTikz(std::string cheminFichier)</div><div class="ttdef"><b>Definition:</b> <a href="_graphe_bicolore_8cpp_source.html#l00232">GrapheBicolore.cpp:232</a></div></div>
-<div class="ttc" id="aclass_graphe_bicolore_html_a2b693b85ad342c4ca3328044d05a8ed6"><div class="ttname"><a href="class_graphe_bicolore.html#a2b693b85ad342c4ca3328044d05a8ed6">GrapheBicolore::algorithmeExact</a></div><div class="ttdeci">int algorithmeExact(bool simplifier, bool debug)</div><div class="ttdef"><b>Definition:</b> <a href="_graphe_bicolore_8cpp_source.html#l00781">GrapheBicolore.cpp:781</a></div></div>
-<div class="ttc" id="aclass_graphe_bicolore_html_a0c5e2be3e3bf93aff8f5a7661f6961f4"><div class="ttname"><a href="class_graphe_bicolore.html#a0c5e2be3e3bf93aff8f5a7661f6961f4">GrapheBicolore::testSymetrie</a></div><div class="ttdeci">bool testSymetrie()</div><div class="ttdef"><b>Definition:</b> <a href="_graphe_bicolore_8cpp_source.html#l00455">GrapheBicolore.cpp:455</a></div></div>
-<div class="ttc" id="aclass_graphe_bicolore_html_a8960915656267ee9decdad02e0a35e31"><div class="ttname"><a href="class_graphe_bicolore.html#a8960915656267ee9decdad02e0a35e31">GrapheBicolore::enumeration</a></div><div class="ttdeci">std::vector&lt; int &gt; enumeration()</div><div class="ttdef"><b>Definition:</b> <a href="_graphe_bicolore_8cpp_source.html#l00833">GrapheBicolore.cpp:833</a></div></div>
+<div class="ttc" id="aclass_graphe_bicolore_html_a2b693b85ad342c4ca3328044d05a8ed6"><div class="ttname"><a href="class_graphe_bicolore.html#a2b693b85ad342c4ca3328044d05a8ed6">GrapheBicolore::algorithmeExact</a></div><div class="ttdeci">int algorithmeExact(bool simplifier, bool debug)</div><div class="ttdef"><b>Definition:</b> <a href="_graphe_bicolore_8cpp_source.html#l00784">GrapheBicolore.cpp:784</a></div></div>
+<div class="ttc" id="aclass_graphe_bicolore_html_a8960915656267ee9decdad02e0a35e31"><div class="ttname"><a href="class_graphe_bicolore.html#a8960915656267ee9decdad02e0a35e31">GrapheBicolore::enumeration</a></div><div class="ttdeci">std::vector&lt; int &gt; enumeration()</div><div class="ttdef"><b>Definition:</b> <a href="_graphe_bicolore_8cpp_source.html#l00836">GrapheBicolore.cpp:836</a></div></div>
 <div class="ttc" id="aclass_graphe_bicolore_html_a3bdc56c88f804be2d482adf57f0dd786"><div class="ttname"><a href="class_graphe_bicolore.html#a3bdc56c88f804be2d482adf57f0dd786">GrapheBicolore::fichierSage</a></div><div class="ttdeci">void fichierSage(std::string cheminFichier)</div><div class="ttdef"><b>Definition:</b> <a href="_graphe_bicolore_8cpp_source.html#l00208">GrapheBicolore.cpp:208</a></div></div>
 <div class="ttc" id="aclass_graphe_bicolore_html_a2d3f5f8926c8af02a8e5ef48d57e63c9"><div class="ttname"><a href="class_graphe_bicolore.html#a2d3f5f8926c8af02a8e5ef48d57e63c9">GrapheBicolore::estLinearisable</a></div><div class="ttdeci">bool estLinearisable()</div><div class="ttdef"><b>Definition:</b> <a href="_graphe_bicolore_8cpp_source.html#l00300">GrapheBicolore.cpp:300</a></div></div>
-<div class="ttc" id="aclass_graphe_bicolore_html_ada1675cb7d024e735add2dc18ae91fff"><div class="ttname"><a href="class_graphe_bicolore.html#ada1675cb7d024e735add2dc18ae91fff">GrapheBicolore::algorithmeGlouton</a></div><div class="ttdeci">int algorithmeGlouton(bool simplifier, bool debug)</div><div class="ttdef"><b>Definition:</b> <a href="_graphe_bicolore_8cpp_source.html#l00677">GrapheBicolore.cpp:677</a></div></div>
-<div class="ttc" id="aclass_graphe_bicolore_html_a08f216f155e3a40ff80fc4bee690170d"><div class="ttname"><a href="class_graphe_bicolore.html#a08f216f155e3a40ff80fc4bee690170d">GrapheBicolore::heuristiqueDenombrement</a></div><div class="ttdeci">int heuristiqueDenombrement(bool simplifier, int tailleChemin, bool debug)</div><div class="ttdef"><b>Definition:</b> <a href="_graphe_bicolore_8cpp_source.html#l00711">GrapheBicolore.cpp:711</a></div></div>
+<div class="ttc" id="aclass_graphe_bicolore_html_ada1675cb7d024e735add2dc18ae91fff"><div class="ttname"><a href="class_graphe_bicolore.html#ada1675cb7d024e735add2dc18ae91fff">GrapheBicolore::algorithmeGlouton</a></div><div class="ttdeci">int algorithmeGlouton(bool simplifier, bool debug)</div><div class="ttdef"><b>Definition:</b> <a href="_graphe_bicolore_8cpp_source.html#l00659">GrapheBicolore.cpp:659</a></div></div>
+<div class="ttc" id="aclass_graphe_bicolore_html_a08f216f155e3a40ff80fc4bee690170d"><div class="ttname"><a href="class_graphe_bicolore.html#a08f216f155e3a40ff80fc4bee690170d">GrapheBicolore::heuristiqueDenombrement</a></div><div class="ttdeci">int heuristiqueDenombrement(bool simplifier, int tailleChemin, bool debug)</div><div class="ttdef"><b>Definition:</b> <a href="_graphe_bicolore_8cpp_source.html#l00703">GrapheBicolore.cpp:703</a></div></div>
 <div class="ttc" id="aclass_graphe_bicolore_html_aea3a7baa07873db6f9d50ed169409913"><div class="ttname"><a href="class_graphe_bicolore.html#aea3a7baa07873db6f9d50ed169409913">GrapheBicolore::GrapheBicolore</a></div><div class="ttdeci">GrapheBicolore(int n)</div><div class="ttdef"><b>Definition:</b> <a href="_graphe_bicolore_8cpp_source.html#l00014">GrapheBicolore.cpp:14</a></div></div>
 <div class="ttc" id="acycle_count_8h_html"><div class="ttname"><a href="cycle_count_8h.html">cycleCount.h</a></div></div>
 <div class="ttc" id="aclass_tableau_binaire_html"><div class="ttname"><a href="class_tableau_binaire.html">TableauBinaire</a></div><div class="ttdef"><b>Definition:</b> <a href="_tableau_binaire_8h_source.html#l00004">TableauBinaire.h:4</a></div></div>
