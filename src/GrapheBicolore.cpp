@@ -451,28 +451,10 @@ std::vector<int> GrapheBicolore::getSommetsNoirsParAdjacence() {
     return res;
 }
 
-// TODO: a supprimer
-bool GrapheBicolore::testSymetrie() {
-    for (int i = 0; i < n; ++i) {
-        for (auto v1 : voisinsVerts.at(i)) {
-            bool good = false;
-            for (auto v2: voisinsVerts.at(v1.sommet)) {
-                if (v2.sommet == i && v1.active == v2.active) {
-                    good = true;
-                }
-            }
-            if (!voisinsVerts.at(v1.sommet).empty() && !good) {
-                throw std::runtime_error("symétrie non-respecté");
-            }
-        }
-    }
-}
-
 /**
  * @return vrai si le graphe contient un mauvais cycle, faux sinon
  */
 bool GrapheBicolore::mauvaisCycle() {
-    testSymetrie();
     std::vector<int> P = getSommetsNoirsParAdjacence();
     std::vector<bool> dejaVu;
     dejaVu.reserve(n);
@@ -684,16 +666,26 @@ int GrapheBicolore::algorithmeGlouton(bool simplifier, bool debug) {
         aretes = aretesVertes();
     }
 
-    // On retire les arêtes dans l'ordre de la liste
-    for (int nombreAretesRetirees = 1; nombreAretesRetirees < aretes.size() + 1; ++nombreAretesRetirees) {
-        desactiverAreteVerte(aretes[nombreAretesRetirees - 1].x, aretes[nombreAretesRetirees - 1].y);
-        if (debug) {
-            std::cout << "L'arête numéro " << nombreAretesRetirees - 1 << " de " << aretes[nombreAretesRetirees - 1].x
-                      << " à " << aretes[nombreAretesRetirees - 1].y << " est retirée" << std::endl;
+    // On désactive les arêtes
+    for (int i = 1; i < aretes.size(); ++i) {
+        desactiverAreteVerte(aretes[i].x, aretes[i].y);
+    }
+
+    // On ajoute l'arête si le graphe reste linéarisable
+    int nombreAretesRetirees = 0;
+    for (int numArete = 0; numArete < aretes.size(); ++numArete) {
+        activerAreteVerte(aretes[numArete].x, aretes[numArete].y);
+        if (!estLinearisable()) {
+            desactiverAreteVerte(aretes[numArete].x, aretes[numArete].y);
+            nombreAretesRetirees++;
+            if (debug) {
+                std::cout << "L'arête numéro " << numArete << " de " << aretes[numArete].x
+                          << " à " << aretes[numArete].y << " est retirée" << std::endl;
+            }
         }
-        if (estLinearisable()) {
-            return nombreAretesRetirees;
-        }
+    }
+    if (estLinearisable()) {
+        return nombreAretesRetirees;
     }
     // Ne pas obtenir de solution n'est pas un résultat possible, on lève une erreur d'execution
     throw std::runtime_error("aucun résultat, sans arêtes vertes le graphe n'est pas linéaire");
@@ -746,8 +738,14 @@ int GrapheBicolore::heuristiqueDenombrement(bool simplifier, int tailleChemin, b
         }
     }
 
-    // On retire les arêtes par ordre de poids
-    for (int nombreAretesRetirees = 1; nombreAretesRetirees < aretes.size(); ++nombreAretesRetirees) {
+    // On désactive les arêtes
+    for (int i = 1; i < aretes.size(); ++i) {
+        desactiverAreteVerte(aretes[i].x, aretes[i].y);
+    }
+
+    // On active les arêtes par ordre de poids
+    int nombreAretesRetirees = 0;
+    for (int numArete = 1; numArete < aretes.size(); ++numArete) {
         int indiceMaximum = -1;
         double poidsMaximum = -1;
         for (int j = 0; j < aretes.size(); ++j) {
@@ -756,15 +754,20 @@ int GrapheBicolore::heuristiqueDenombrement(bool simplifier, int tailleChemin, b
                 poidsMaximum = poids[j];
             }
         }
-        desactiverAreteVerte(aretes[indiceMaximum].x, aretes[indiceMaximum].y);
-        if (debug) {
-            std::cout << "L'arête numéro " << indiceMaximum << " de " << aretes[indiceMaximum].x << " à "
-                      << aretes[indiceMaximum].y << " est retirée" << std::endl;
-        }
-        if (estLinearisable()) {
-            return nombreAretesRetirees;
+        activerAreteVerte(aretes[indiceMaximum].x, aretes[indiceMaximum].y);
+        // Si le graphe n'est plus linéarisable, on retire l'arête
+        if (!estLinearisable()) {
+            desactiverAreteVerte(aretes[indiceMaximum].x, aretes[indiceMaximum].y);
+            nombreAretesRetirees++;
+            if (debug) {
+                std::cout << "L'arête numéro " << indiceMaximum << " de " << aretes[indiceMaximum].x << " à "
+                          << aretes[indiceMaximum].y << " est retirée" << std::endl;
+            }
         }
         poids[indiceMaximum] = -1;
+    }
+    if (estLinearisable()) {
+        return nombreAretesRetirees;
     }
     // Ne pas obtenir de solution n'est pas un résultat possible, on lève une erreur d'execution
     throw std::runtime_error("aucun résultat, sans arêtes vertes le graphe n'est pas linéaire");
