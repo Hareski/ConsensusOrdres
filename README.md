@@ -2,9 +2,13 @@
 # Algorithmique pour le consensus d’ordres
 Code source de nos Travaux d'Étude et de Recherche. Plusieurs méthodes exactes ou approchées pour obtenir un consensus d'ordre. C'est-à-dire, transformer une relation binaire quelconque en une relation d'ordre partiel avec une perte d'information minimisée. Ces algorithmes servent le contexte bio-informatique de la cartographie génétique.
 
-> **Petite Integration Continue :** Une documentation de tout le projet est automatiquement générée par une action Github à chaque mise à jour de la branche `master`. Vous pouvez retrouver cette documentation complète sur [hareski.github.io/ConsensusOrdres](https://hareski.github.io/ConsensusOrdres/).
+> **Petites Integrations Continues :** Une documentation de tout le projet est automatiquement générée par une action Github à chaque mise à jour de la branche `master`. Vous pouvez retrouver cette documentation complète sur [hareski.github.io/ConsensusOrdres](https://hareski.github.io/ConsensusOrdres/).
 Le status de déploiement de la documentation est actuellement :
 ![Documentation](https://github.com/Hareski/ConsensusOrdres/workflows/Documentation/badge.svg)
+>
+>Une compilation est automatiquement déclenchée à chaque mise à jour de la branche `master`. Le status de compilation du projet est :
+![Building](https://github.com/Hareski/ConsensusOrdres/workflows/Building/badge.svg)
+
 
 ## Organisation du dossier
 
