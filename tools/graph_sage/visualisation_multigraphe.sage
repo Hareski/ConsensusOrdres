@@ -1,5 +1,5 @@
 d={}
-graph_descriptor = open("graphDescriptor.txt", "r")
+graph_descriptor = open("relations.txt", "r")
 lines =  graph_descriptor.readlines()
 
 
@@ -22,3 +22,4 @@ for e in G.edges():
 		edge_colors['green'].append(e)
 
 G.show(figsize=[15,15], edge_color='black',  edge_colors=edge_colors)
+G.plot(edge_color='black',  edge_colors=edge_colors).save('graph.png')
