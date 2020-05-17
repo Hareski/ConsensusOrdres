@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Algorithmique pour le consensus d’ordres", "index.html", [
+    [ "Les jeux de données", "md_data_aretes__r_e_a_d_m_e.html", null ],
     [ "Algorithmique pour le consensus d’ordres", "md__r_e_a_d_m_e.html", null ],
     [ "Conversion en relations binaires d'entiers", "md_tools_convert_string2int__r_e_a_d_m_e.html", null ],
     [ "Visualisation des multigraphes noir et verts", "md_tools_graph_sage__r_e_a_d_m_e.html", null ],
