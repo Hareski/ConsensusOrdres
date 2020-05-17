@@ -1,6 +1,5 @@
 #include <iostream>
 #include <thread>
-#include <fstream>
 #include <sys/stat.h>
 #include "../header/GrapheBicolore.h"
 
@@ -45,33 +44,26 @@ void testLinearisationEnumeration(int n,
     // Initialisation de l'horloge
     auto start = std::chrono::high_resolution_clock::now();
 
-    // Algorithme Glouton avec simplification
-    int gloutonSimple = g->algorithmeGlouton(true, false);
-    std::cout << std::endl << "L'algorithme glouton simplifié calcul une solution de " << gloutonSimple << std::endl;
-    affichageTemps(start);
-    g->fichierSage(dossierSauvegarde + "gloutonSimple.sage.descriptor");
-    std::cout << dossierSauvegarde << "gloutonSimple.sage.descriptor créé." << std::endl;
-
-    // Algorithme Glouton sans simplification
+    // Algorithme Glouton
     start = std::chrono::high_resolution_clock::now();
-    int glouton = g->algorithmeGlouton(false, false);
+    int glouton = g->algorithmeGlouton(false, true);
     std::cout << std::endl << "L'algorithme glouton calcul une solution de " << glouton << std::endl;
     affichageTemps(start);
     g->fichierSage(dossierSauvegarde + "glouton.sage.descriptor");
     std::cout << dossierSauvegarde << "glouton.sage.descriptor créé." << std::endl;
 
-    // Heuristique avec simplification et limité à une taille de 10
-    start = std::chrono::high_resolution_clock::now();
-    int heuristiqueSimple = g->heuristiqueDenombrement(true, 10, false);
-    std::cout << std::endl << "L'heuristique simplifié calcul une solution de " << heuristiqueSimple << std::endl;
-    affichageTemps(start);
-    g->fichierSage(dossierSauvegarde + "heuristiqueSimple.sage.descriptor");
-    std::cout << dossierSauvegarde << "heuristiqueSimple.sage.descriptor créé." << std::endl;
-
-    // Heuristique sans simplification et limité à une taille de 10
+    // Heuristique limité à une taille de 10
     start = std::chrono::high_resolution_clock::now();
     int heuristique = g->heuristiqueDenombrement(false, 10, false);
-    std::cout << std::endl << "L'heuristique calcul une solution de " << heuristique << std::endl;
+    std::cout << std::endl << "L'heuristique limité à 10 calcul une solution de " << heuristique << std::endl;
+    affichageTemps(start);
+    g->fichierSage(dossierSauvegarde + "heuristiqueLimite10.sage.descriptor");
+    std::cout << dossierSauvegarde << "heuristiqueLimite10.sage.descriptor créé." << std::endl;
+
+    // Heuristique
+    start = std::chrono::high_resolution_clock::now();
+    int heuristiqueNolim = g->heuristiqueDenombrement(false, 50, false);
+    std::cout << std::endl << "L'heuristique sans limite calcul une solution de " << heuristiqueNolim << std::endl;
     affichageTemps(start);
     g->fichierSage(dossierSauvegarde + "heuristique.sage.descriptor");
     std::cout << dossierSauvegarde << "heuristique.sage.descriptor créé." << std::endl;
@@ -110,25 +102,58 @@ int main() {
     int n;
 
     ////////////////////////////////////////////////////////////////////////////////////////////
-    std::cout << "========== Test 17aretes_simple2 ==========" << std::endl;
+    std::cout << "========== Test 1 ==========" << std::endl;
     n = 18; // Nombre d'arêtes dans le graphe noté de 0 à n-1
-    fichierAretesNoires = "../data/aretes/17aretes_simple2/simple2_aretesNoires";
-    fichierAretesVertes = "../data/aretes/17aretes_simple2/simple2_aretesVertes";
-    testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./test17aretes_simple2/");
+    fichierAretesNoires = "../data/aretes/1_17sommets/1_aretesNoires";
+    fichierAretesVertes = "../data/aretes/1_17sommets/1_aretesVertes";
+    testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./1_17sommets/");
 
     ////////////////////////////////////////////////////////////////////////////////////////////
-    std::cout << "========== Test 22aretes_g9 ==========" << std::endl;
-    n = 22; // Nombre d'arêtes dans le graphe noté de 1 à n
-    fichierAretesNoires = "../data/aretes/22aretes_g9/g9_aretesNoires";
-    fichierAretesVertes = "../data/aretes/22aretes_g9/g9_aretesVertes";
-    testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./test22aretes_g9/");
+    std::cout << "========== Test 2 ==========" << std::endl;
+    n = 22; // Nombre d'arêtes dans le graphe noté de 0 à n-1
+    fichierAretesNoires = "../data/aretes/2_22sommets/2_aretesNoires";
+    fichierAretesVertes = "../data/aretes/2_22sommets/2_aretesVertes";
+    testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./2_22sommets/");
 
     ////////////////////////////////////////////////////////////////////////////////////////////
-    std::cout << "========== Test 462aretes_moustique1 ==========" << std::endl;
-    n = 462; // Nombre d'arêtes dans le graphe noté de 0 à n-1
-    fichierAretesNoires = "../data/aretes/462aretes_moustique1/moustique1_aretesNoires";
-    fichierAretesVertes = "../data/aretes/462aretes_moustique1/moustique1_aretesVertes";
-    testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./test462aretes_moustique1/");
+    std::cout << "========== Test 3 ==========" << std::endl;
+    n = 34; // Nombre d'arêtes dans le graphe noté de 0 à n-1
+    fichierAretesNoires = "../data/aretes/3_34sommets/3_aretesNoires";
+    fichierAretesVertes = "../data/aretes/3_34sommets/3_aretesVertes";
+    testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./3_34sommets/");
 
-    return 0;
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    std::cout << "========== Test 4 ==========" << std::endl;
+    n = 28; // Nombre d'arêtes dans le graphe noté de 0 à n-1
+    fichierAretesNoires = "../data/aretes/4_28sommets/4_aretesNoires";
+    fichierAretesVertes = "../data/aretes/4_28sommets/4_aretesVertes";
+    testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./4_28sommets/");
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    std::cout << "========== Test 5 ==========" << std::endl;
+    n = 34; // Nombre d'arêtes dans le graphe noté de 0 à n-1
+    fichierAretesNoires = "../data/aretes/5_34sommets/5_aretesNoires";
+    fichierAretesVertes = "../data/aretes/5_34sommets/5_aretesVertes";
+    testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./5_34sommets/");
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    std::cout << "========== Test 6 ==========" << std::endl;
+    n = 34; // Nombre d'arêtes dans le graphe noté de 0 à n-1
+    fichierAretesNoires = "../data/aretes/6_34sommets/6_aretesNoires";
+    fichierAretesVertes = "../data/aretes/6_34sommets/6_aretesVertes";
+    testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./6_34sommets/");
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    std::cout << "========== Moustique ==========" << std::endl;
+    n = 463; // Nombre d'arêtes dans le graphe noté de 0 à n-1
+    fichierAretesNoires = "../data/aretes/moustique_462aretes/moustique_aretesNoires";
+    fichierAretesVertes = "../data/aretes/moustique_462aretes/moustique_aretesVertes";
+    testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./moustique_462aretes/");
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    std::cout << "========== Canard ==========" << std::endl;
+    n = 1873; // Nombre d'arêtes dans le graphe noté de 0 à n-1
+    fichierAretesNoires = "../data/aretes/canard_1873aretes/canard_aretesNoires";
+    fichierAretesVertes = "../data/aretes/canard_1873aretes/canard_aretesVertes";
+    testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./canard_1873aretes/");
 }
