@@ -318,10 +318,14 @@ int GrapheBicolore::degreNoir(int s) {
 
 /**
  * @param s un sommet
- * @return degré vert du sommet
+ * @return degré vert actif du sommet
  */
 int GrapheBicolore::degreVert(int s) {
-    return voisinsVertsActifs(s).size();
+    int degre = 0;
+    for (auto voisin: voisinsVerts.at(s)) {
+        degre += voisin.active;
+    }
+    return degre;
 }
 
 /**
@@ -745,26 +749,26 @@ int GrapheBicolore::heuristiqueDenombrement(bool simplifier, int tailleChemin, b
 
     // On active les arêtes par ordre de poids
     int nombreAretesRetirees = 0;
-    for (int numArete = 1; numArete < aretes.size(); ++numArete) {
-        int indiceMaximum = -1;
-        double poidsMaximum = -1;
+    for (int numArete = 0; numArete < aretes.size(); ++numArete) {
+        int imin = -1;
+        double poidsMin = -1;
         for (int j = 0; j < aretes.size(); ++j) {
-            if (poids[j] > poidsMaximum) {
-                indiceMaximum = j;
-                poidsMaximum = poids[j];
+            if (poidsMin == -1 || (poids[j] > 0 && poids[j] < poidsMin)) {
+                imin = j;
+                poidsMin = poids[j];
             }
         }
-        activerAreteVerte(aretes[indiceMaximum].x, aretes[indiceMaximum].y);
+        activerAreteVerte(aretes[imin].x, aretes[imin].y);
         // Si le graphe n'est plus linéarisable, on retire l'arête
         if (!estLinearisable()) {
-            desactiverAreteVerte(aretes[indiceMaximum].x, aretes[indiceMaximum].y);
+            desactiverAreteVerte(aretes[imin].x, aretes[imin].y);
             nombreAretesRetirees++;
             if (debug) {
-                std::cout << "L'arête numéro " << indiceMaximum << " de " << aretes[indiceMaximum].x << " à "
-                          << aretes[indiceMaximum].y << " est retirée" << std::endl;
+                std::cout << "L'arête numéro " << imin << " de " << aretes[imin].x << " à "
+                          << aretes[imin].y << " est retirée" << std::endl;
             }
         }
-        poids[indiceMaximum] = -1;
+        poids[imin] = -1;
     }
     if (estLinearisable()) {
         return nombreAretesRetirees;
@@ -790,7 +794,6 @@ int GrapheBicolore::algorithmeExact(bool simplifier, bool debug) {
     } else {
         aretes = aretesVertes();
     }
-
     const int nombreAretesVertes = aretes.size();
     for (int nombreAretesRetirees = 0; nombreAretesRetirees <= nombreAretesVertes; ++nombreAretesRetirees) {
         // Initialisation du tableau binaire des arêtes à ajouter (=faux) ou non (=vrai)
