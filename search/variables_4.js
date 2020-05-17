@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['match_122',['match',['../namespaceconvert__string2int.html#a38d5208aaf50340a10421c78a112699c',1,'convert_string2int']]]
+  ['figsize_140',['figsize',['../namespacevisualisation__multigraphe.html#a1b31c71fe6514f564fd0f50fca4623b0',1,'visualisation_multigraphe']]]
 ];

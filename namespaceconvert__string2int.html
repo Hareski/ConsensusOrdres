@@ -91,9 +91,9 @@ $(document).ready(function(){initNavTree('namespaceconvert__string2int.html','')
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ae94da742bd7e874e38345cf09d94d7df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconvert__string2int.html#ae94da742bd7e874e38345cf09d94d7df">blackFile</a> = open(&quot;noir.txt&quot;, &quot;r&quot;)</td></tr>
+<tr class="memitem:ae94da742bd7e874e38345cf09d94d7df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconvert__string2int.html#ae94da742bd7e874e38345cf09d94d7df">blackFile</a> = open(sys.argv[1], &quot;r&quot;)</td></tr>
 <tr class="separator:ae94da742bd7e874e38345cf09d94d7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a200ffe5f12b8007328603f6543b6ec95"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconvert__string2int.html#a200ffe5f12b8007328603f6543b6ec95">greenFile</a> = open(&quot;vert.txt&quot;, &quot;r&quot;)</td></tr>
+<tr class="memitem:a200ffe5f12b8007328603f6543b6ec95"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconvert__string2int.html#a200ffe5f12b8007328603f6543b6ec95">greenFile</a> = open(sys.argv[2], &quot;r&quot;)</td></tr>
 <tr class="separator:a200ffe5f12b8007328603f6543b6ec95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6277f4a5bc8905ff2f1e3420192c53d"><td class="memItemLeft" align="right" valign="top">dictionary&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconvert__string2int.html#ad6277f4a5bc8905ff2f1e3420192c53d">nameToId</a> = {}</td></tr>
 <tr class="separator:ad6277f4a5bc8905ff2f1e3420192c53d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -101,8 +101,10 @@ Variables</h2></td></tr>
 <tr class="separator:ad5262c9fc591ffc5c3584a06a8ac35ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8b2768353daf24dbba51489417564b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconvert__string2int.html#aa8b2768353daf24dbba51489417564b2">lines</a> = blackFile.readlines()</td></tr>
 <tr class="separator:aa8b2768353daf24dbba51489417564b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38d5208aaf50340a10421c78a112699c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconvert__string2int.html#a38d5208aaf50340a10421c78a112699c">match</a> = re.match(r&quot;([^ ]+) ([^ ]+)\n&quot;, line)</td></tr>
+<tr class="memitem:a38d5208aaf50340a10421c78a112699c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconvert__string2int.html#a38d5208aaf50340a10421c78a112699c">match</a> = re.match(r&quot;([^ ]+) ([^ ]+).*\n&quot;, line)</td></tr>
 <tr class="separator:a38d5208aaf50340a10421c78a112699c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8c35efba34ad5451bc794e69aa9b865"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconvert__string2int.html#af8c35efba34ad5451bc794e69aa9b865">countRelation</a> = 0;</td></tr>
+<tr class="separator:af8c35efba34ad5451bc794e69aa9b865"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Variable Documentation</h2>
 <a id="ae94da742bd7e874e38345cf09d94d7df"></a>
@@ -112,12 +114,12 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">convert_string2int.blackFile = open(&quot;noir.txt&quot;, &quot;r&quot;)</td>
+          <td class="memname">convert_string2int.blackFile = open(sys.argv[1], &quot;r&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="convert__string2int_8py_source.html#l00004">4</a> of file <a class="el" href="convert__string2int_8py_source.html">convert_string2int.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="convert__string2int_8py_source.html#l00008">8</a> of file <a class="el" href="convert__string2int_8py_source.html">convert_string2int.py</a>.</p>
 
 </div>
 </div>
@@ -133,7 +135,23 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="convert__string2int_8py_source.html#l00007">7</a> of file <a class="el" href="convert__string2int_8py_source.html">convert_string2int.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="convert__string2int_8py_source.html#l00011">11</a> of file <a class="el" href="convert__string2int_8py_source.html">convert_string2int.py</a>.</p>
+
+</div>
+</div>
+<a id="af8c35efba34ad5451bc794e69aa9b865"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8c35efba34ad5451bc794e69aa9b865">&#9670;&nbsp;</a></span>countRelation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int convert_string2int.countRelation = 0;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="convert__string2int_8py_source.html#l00031">31</a> of file <a class="el" href="convert__string2int_8py_source.html">convert_string2int.py</a>.</p>
 
 </div>
 </div>
@@ -144,12 +162,12 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">convert_string2int.greenFile = open(&quot;vert.txt&quot;, &quot;r&quot;)</td>
+          <td class="memname">convert_string2int.greenFile = open(sys.argv[2], &quot;r&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="convert__string2int_8py_source.html#l00005">5</a> of file <a class="el" href="convert__string2int_8py_source.html">convert_string2int.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="convert__string2int_8py_source.html#l00009">9</a> of file <a class="el" href="convert__string2int_8py_source.html">convert_string2int.py</a>.</p>
 
 </div>
 </div>
@@ -165,7 +183,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="convert__string2int_8py_source.html#l00012">12</a> of file <a class="el" href="convert__string2int_8py_source.html">convert_string2int.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="convert__string2int_8py_source.html#l00016">16</a> of file <a class="el" href="convert__string2int_8py_source.html">convert_string2int.py</a>.</p>
 
 </div>
 </div>
@@ -176,12 +194,12 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">convert_string2int.match = re.match(r&quot;([^ ]+) ([^ ]+)\n&quot;, line)</td>
+          <td class="memname">convert_string2int.match = re.match(r&quot;([^ ]+) ([^ ]+).*\n&quot;, line)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="convert__string2int_8py_source.html#l00014">14</a> of file <a class="el" href="convert__string2int_8py_source.html">convert_string2int.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="convert__string2int_8py_source.html#l00018">18</a> of file <a class="el" href="convert__string2int_8py_source.html">convert_string2int.py</a>.</p>
 
 </div>
 </div>
@@ -197,7 +215,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="convert__string2int_8py_source.html#l00006">6</a> of file <a class="el" href="convert__string2int_8py_source.html">convert_string2int.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="convert__string2int_8py_source.html#l00010">10</a> of file <a class="el" href="convert__string2int_8py_source.html">convert_string2int.py</a>.</p>
 
 </div>
 </div>

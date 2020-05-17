@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('eigenvalues_8cpp_source.html',''); ini
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;../header/eigenvalues.h&quot;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="eigenvalues_8cpp.html#a041659be467da80f344c3905c97d2de0">   19</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="eigenvalues_8cpp.html#a041659be467da80f344c3905c97d2de0">computeEigenvalues</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">double</span> *A, <span class="keywordtype">int</span> it_max, <span class="keywordtype">double</span> *v, <span class="keywordtype">double</span> *d, <span class="keywordtype">int</span> &amp;it_num, <span class="keywordtype">int</span> &amp;rot_num) {</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="eigenvalues_8cpp.html#a041659be467da80f344c3905c97d2de0">   19</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="eigenvalues_8cpp.html#a041659be467da80f344c3905c97d2de0">computeEigenvalues</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">double</span> *A, <span class="keywordtype">int</span> it_max, <span class="keywordtype">double</span> *v, <span class="keywordtype">double</span> *<a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>, <span class="keywordtype">int</span> &amp;it_num, <span class="keywordtype">int</span> &amp;rot_num) {</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">double</span> *bw;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">double</span> c;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">double</span> g;</div>
@@ -116,12 +116,12 @@ $(document).ready(function(){initNavTree('eigenvalues_8cpp_source.html',''); ini
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="eigenvalues_8cpp.html#a887293832a290c41ef3301ad579cc299">identityDoublePrecisionMatrix</a>(n, v);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="eigenvalues_8cpp.html#ae127e87f2ec51ad95bbeb313dfbb0eff">getDiagonalDoublePrecisionMatrix</a>(n, A, d);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="eigenvalues_8cpp.html#ae127e87f2ec51ad95bbeb313dfbb0eff">getDiagonalDoublePrecisionMatrix</a>(n, A, <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    bw = <span class="keyword">new</span> <span class="keywordtype">double</span>[n];</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    zw = <span class="keyword">new</span> <span class="keywordtype">double</span>[n];</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">for</span> (i = 0; i &lt; n; ++i) {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        bw[i] = d[i];</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        bw[i] = <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[i];</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        zw[i] = 0.0;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    it_num = 0;</div>
@@ -145,17 +145,17 @@ $(document).ready(function(){initNavTree('eigenvalues_8cpp_source.html',''); ini
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">for</span> (p = 0; p &lt; n; p++) {</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">for</span> (q = p + 1; q &lt; n; q++) {</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                gapq = 10.0 * fabs(A[p + q * n]);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                termp = gapq + fabs(d[p]);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                termq = gapq + fabs(d[q]);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                termp = gapq + fabs(<a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[p]);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                termq = gapq + fabs(<a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[q]);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="keywordflow">if</span> (4 &lt; it_num &amp;&amp;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                    termp == fabs(d[p]) &amp;&amp;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                    termq == fabs(d[q])) {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                    termp == fabs(<a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[p]) &amp;&amp;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                    termq == fabs(<a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[q])) {</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                    <span class="comment">// Annihilate tiny off diagonal elements</span></div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    A[p + q * n] = 0.0;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (thresh &lt;= fabs(A[p + q * n])) {</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                    <span class="comment">// Otherwise, apply A rotation</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    h = d[q] - d[p];</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    h = <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[q] - <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[p];</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                    term = fabs(h) + gapq;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                    <span class="keywordflow">if</span> (term == fabs(h)) {</div>
@@ -174,8 +174,8 @@ $(document).ready(function(){initNavTree('eigenvalues_8cpp_source.html',''); ini
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                    <span class="comment">// Accumulate corrections to diagonal elements</span></div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                    zw[p] = zw[p] - h;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                    zw[q] = zw[q] + h;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                    d[p] = d[p] - h;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                    d[q] = d[q] + h;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                    <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[p] = <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[p] - h;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                    <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[q] = <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[q] + h;</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                    A[p + q * n] = 0.0;</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                    <span class="comment">// Rotate, using only information from the upper triangle of A</span></div>
@@ -211,7 +211,7 @@ $(document).ready(function(){initNavTree('eigenvalues_8cpp_source.html',''); ini
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        }</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; n; ++i) {</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            bw[i] = bw[i] + zw[i];</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            d[i] = bw[i];</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[i] = bw[i];</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            zw[i] = 0.0;</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        }</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    }</div>
@@ -227,14 +227,14 @@ $(document).ready(function(){initNavTree('eigenvalues_8cpp_source.html',''); ini
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordflow">for</span> (k = 0; k &lt; n - 1; k++) {</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        m = k;</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">for</span> (l = k + 1; l &lt; n; l++) {</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            <span class="keywordflow">if</span> (d[l] &lt; d[m]) {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[l] &lt; <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[m]) {</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                m = l;</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            }</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        }</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">if</span> (m != k) {</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            t = d[m];</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            d[m] = d[k];</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            d[k] = t;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            t = <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[m];</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[m] = <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[k];</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <a class="code" href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">d</a>[k] = t;</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="keywordflow">for</span> (i = 0; i &lt; n; ++i) {</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                w = v[i + m * n];</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                v[i + m * n] = v[i + k * n];</div>
@@ -269,6 +269,7 @@ $(document).ready(function(){initNavTree('eigenvalues_8cpp_source.html',''); ini
 </div><!-- doc-content -->
 <div class="ttc" id="aeigenvalues_8cpp_html_a887293832a290c41ef3301ad579cc299"><div class="ttname"><a href="eigenvalues_8cpp.html#a887293832a290c41ef3301ad579cc299">identityDoublePrecisionMatrix</a></div><div class="ttdeci">void identityDoublePrecisionMatrix(int n, double *A)</div><div class="ttdef"><b>Definition:</b> <a href="eigenvalues_8cpp_source.html#l00198">eigenvalues.cpp:198</a></div></div>
 <div class="ttc" id="aeigenvalues_8cpp_html_ae127e87f2ec51ad95bbeb313dfbb0eff"><div class="ttname"><a href="eigenvalues_8cpp.html#ae127e87f2ec51ad95bbeb313dfbb0eff">getDiagonalDoublePrecisionMatrix</a></div><div class="ttdeci">void getDiagonalDoublePrecisionMatrix(int n, double *A, double *v)</div><div class="ttdef"><b>Definition:</b> <a href="eigenvalues_8cpp_source.html#l00184">eigenvalues.cpp:184</a></div></div>
+<div class="ttc" id="anamespacevisualisation__multigraphe_html_a168da6b4b5fb3d7448b72cca2afbac04"><div class="ttname"><a href="namespacevisualisation__multigraphe.html#a168da6b4b5fb3d7448b72cca2afbac04">visualisation_multigraphe.d</a></div><div class="ttdeci">dictionary d</div><div class="ttdef"><b>Definition:</b> <a href="visualisation__multigraphe_8sage_8py_source.html#l00011">visualisation_multigraphe.sage.py:11</a></div></div>
 <div class="ttc" id="aeigenvalues_8cpp_html_a041659be467da80f344c3905c97d2de0"><div class="ttname"><a href="eigenvalues_8cpp.html#a041659be467da80f344c3905c97d2de0">computeEigenvalues</a></div><div class="ttdeci">void computeEigenvalues(int n, double *A, int it_max, double *v, double *d, int &amp;it_num, int &amp;rot_num)</div><div class="ttdef"><b>Definition:</b> <a href="eigenvalues_8cpp_source.html#l00019">eigenvalues.cpp:19</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

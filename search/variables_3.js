@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['lines_121',['lines',['../namespaceconvert__string2int.html#aa8b2768353daf24dbba51489417564b2',1,'convert_string2int']]]
+  ['edge_5fcolor_138',['edge_color',['../namespacevisualisation__multigraphe.html#acaadcd59e122cc6e7a56cebdcb803b45',1,'visualisation_multigraphe']]],
+  ['edge_5fcolors_139',['edge_colors',['../namespacevisualisation__multigraphe.html#affdb263bac29a3ecf71ec71081cc242c',1,'visualisation_multigraphe']]]
 ];
