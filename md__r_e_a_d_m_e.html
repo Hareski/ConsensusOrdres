@@ -95,10 +95,16 @@ $(document).ready(function(){initNavTree('md__r_e_a_d_m_e.html',''); initResizab
 <p>&gt;Une compilation est automatiquement déclenchée à chaque mise à jour de la branche <code>master</code>. Le status de compilation du projet est : </p>
 </blockquote>
 <p><img src="https://github.com/Hareski/ConsensusOrdres/workflows/Building/badge.svg" alt="Building" style="pointer-events: none;" class="inline"/></p>
+<h1>Utilisation</h1>
+<p>Pour installer le programme, il vous faut utiliser Cmake. Pour télécharger Cmake : <a href="https://cmake.org/download/">https://cmake.org/download/</a>. Vous pouvez ensuite utiliser votre IDE ou directement les commandes sur le dossier source : </p><div class="fragment"><div class="line">cd app</div>
+<div class="line">cmake ..</div>
+<div class="line">make</div>
+</div><!-- fragment --><p>Finalement le programme peut être lancé avec <code>./main</code>.</p>
 <h1>Organisation du dossier</h1>
 <h1><code>/app</code></h1>
-<p>Contient le fichier <code><a class="el" href="main_8cpp.html">main.cpp</a></code>. Il s'agit d'exemples d'utilisation du programme. </p><blockquote class="doxtable">
-<p><b>Note :</b> Il peut-être suprimé ou modifié si le programme est utilisé dans un autre cadre. </p>
+<p>Contient le fichier <code><a class="el" href="main_8cpp.html">main.cpp</a></code>. Il s'agit d'exemples d'utilisation du programme.</p>
+<blockquote class="doxtable">
+<p><b>Note :</b> Il peut être supprimé ou modifié si le programme est utilisé dans un autre cadre. </p>
 </blockquote>
 <h1><code>/doc</code></h1>
 <p>Documentation à partir du code source et des commentaires du programme qui doit être généré avec Doxygen : <a href="http://www.doxygen.nl/">http://www.doxygen.nl/</a></p>
@@ -109,9 +115,9 @@ $(document).ready(function(){initNavTree('md__r_e_a_d_m_e.html',''); initResizab
 <h1><code>/data</code></h1>
 <p>Différentes données utilisées pour les exemples d'utilisation.</p>
 <h1><code>/header</code></h1>
-<p>Fichiers d’en-tête du programmes. Définitions de l'ensemble des classes, variables, fonctions et méthodes.</p>
+<p>Fichiers d’en-tête du programme. Définitions de l'ensemble des classes, variables, fonctions et méthodes.</p>
 <h1><code>/src</code></h1>
-<p>Fichiers sources du programmes. L'ensemble des méthodes et fonctions y sont déclaré. Pour facilité la maintenance, la documentation se situe directement au-dessus des déclarations.</p>
+<p>Fichiers sources du programme. L'ensemble des méthodes et fonctions y sont déclarées. Pour faciliter la maintenance, la documentation se situe directement au-dessus des déclarations.</p>
 <h1><code>/tools</code></h1>
 <p>Plusieurs outils externes pour faciliter l'utilisation du programme. Notamment la visualisation des graphes.</p>
 <h2><code>graph_sage</code></h2>
