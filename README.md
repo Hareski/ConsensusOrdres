@@ -10,11 +10,21 @@ Le status de déploiement de la documentation est actuellement :
 ![Building](https://github.com/Hareski/ConsensusOrdres/workflows/Building/badge.svg)
 
 
+## Utilisation
+Pour installer le programme, il vous faut utiliser Cmake. Pour télécharger Cmake : https://cmake.org/download/. Vous pouvez ensuite utiliser votre IDE ou directement les commandes sur le dossier source :
+```
+cd app
+cmake ..
+make
+```
+Finalement le programme peut être lancé avec `./main`.
+
 ## Organisation du dossier
 
 ## `/app`
 Contient le fichier `main.cpp`. Il s'agit d'exemples d'utilisation du programme. 
-> **Note :** Il peut-être suprimé ou modifié si le programme est utilisé dans un autre cadre.
+
+> **Note :** Il peut être supprimé ou modifié si le programme est utilisé dans un autre cadre.
 
 ## `/doc`
 Documentation à partir du code source et des commentaires du programme qui doit être généré avec Doxygen : http://www.doxygen.nl/
@@ -27,10 +37,10 @@ Vous pouvez aussi retrouver directement la documentation complète sur [hareski.
 Différentes données utilisées pour les exemples d'utilisation.
 
 ## `/header`
-Fichiers d’en-tête du programmes. Définitions de l'ensemble des classes, variables, fonctions et méthodes.
+Fichiers d’en-tête du programme. Définitions de l'ensemble des classes, variables, fonctions et méthodes.
 
 ## `/src`
-Fichiers sources du programmes. L'ensemble des méthodes et fonctions y sont déclaré. Pour facilité la maintenance, la documentation se situe directement au-dessus des déclarations.
+Fichiers sources du programme. L'ensemble des méthodes et fonctions y sont déclarées. Pour faciliter la maintenance, la documentation se situe directement au-dessus des déclarations.
 
 ## `/tools`
 Plusieurs outils externes pour faciliter l'utilisation du programme. Notamment la visualisation des graphes.
