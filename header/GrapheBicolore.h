@@ -30,6 +30,8 @@ private:
 
     std::vector<Arete> aretesVertesActives();
 
+    std::vector<Arete> aretesVertesDesactives();
+
     std::vector<int> voisinsVertsActifs(int s);
 
     std::vector<int> voisinsNoirsActifs(int s);
@@ -76,7 +78,31 @@ private:
 
     double denombrerMauvaisCycles(int tailleMax, std::vector<int> sommetsNoirs);
 
+    void desactiverToutesAretesVertes();
+
     void activerToutesAretesVertes();
+
+    void activerDepuisEnumeration(std::vector<int> enume);
+
+    void triFusionSommets(std::vector<int> &sommets);
+
+    bool appartientSommetListeTriee(int s, std::vector<int> sommets);
+
+    void triFusionAretesParDegre(std::vector<Arete> &aretes);
+
+    bool appartientCycle(Arete e);
+
+    GrapheBicolore* sousGraphe(std::vector<int> sommets);
+
+    std::vector<GrapheBicolore*> composantesConnexes();
+
+    std::vector<GrapheBicolore*> divisionGraphe();
+
+    bool estSature(int s, std::vector<Arete> couplage);
+
+    std::vector<Arete> couplageMaximumAretesVertesActives();
+
+    void desactiverAretesIncoherentes();
 
 public:
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -92,17 +118,31 @@ public:
 
     void fichierTikz(std::string cheminFichier);
 
+    void fichierGLPK(std::string cheminFichier);
+
     bool estLinearisable();
 
     int algorithmeGlouton(bool simplifier, bool debug);
+
+    int algorithmeGloutonDegreCroissant(bool debug);
 
     int heuristiqueDenombrement(bool simplifier, int tailleChemin, bool debug);
 
     int algorithmeExact(bool simplifier, bool debug);
 
+    int algorithmeExactAvecDecoupage(bool simplifier, bool debug);
+
+    int algorithme2approx(bool debug);
+
+    int algorithmeProbabiliste(bool debug, bool start, bool complete);
+
+    int algorithmeProbabilisteAvecDecoupage(bool debug, bool start, bool complete);
+
     bool testSymetrie();
 
     std::vector<int> enumeration();
+
+    void test();
 };
 
 #endif

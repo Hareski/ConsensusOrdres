@@ -8,7 +8,7 @@
  * Affiche le temps écoulé depuis start
  * @param start Valeur à initialisé avant la tâche dont le temps est calculé
  */
-int affichageTemps(std::chrono::time_point<std::chrono::high_resolution_clock> start) {
+void affichageTemps(std::chrono::time_point<std::chrono::high_resolution_clock> start) {
     auto stop = std::chrono::high_resolution_clock::now();
     auto diff = stop - start;
     std::cout << "Programme terminé en "
@@ -46,51 +46,73 @@ void testLinearisationEnumeration(int n,
 
     // Algorithme Glouton
     start = std::chrono::high_resolution_clock::now();
-    int glouton = g->algorithmeGlouton(false, true);
-    std::cout << std::endl << "L'algorithme glouton calcul une solution de " << glouton << std::endl;
+    int glouton = g->algorithmeGlouton(false, false);
+    std::cout << std::endl << "L'algorithme glouton calcule une solution de " << glouton << std::endl;
     affichageTemps(start);
-    g->fichierSage(dossierSauvegarde + "glouton.sage.descriptor");
-    std::cout << dossierSauvegarde << "glouton.sage.descriptor créé." << std::endl;
+    //g->fichierSage(dossierSauvegarde + "glouton.sage.descriptor");
+    //std::cout << dossierSauvegarde << "glouton.sage.descriptor créé." << std::endl;
+
+    // Algorithme Glouton par degré croissant
+	start = std::chrono::high_resolution_clock::now();
+	int glouton2 = g->algorithmeGloutonDegreCroissant(false);
+	std::cout << std::endl << "L'algorithme glouton avec tri sur les aretes calcule une solution de " << glouton << std::endl;
+	affichageTemps(start);
+	//g->fichierSage(dossierSauvegarde + "glouton2.sage.descriptor");
+	//std::cout << dossierSauvegarde << "glouton2.sage.descriptor créé." << std::endl;
+
+	// Algorithme 2-approché
+	int approx = g->algorithme2approx(false);
+	std::cout << std::endl << "L'algorithme 2-approché calcule une solution de " << approx << std::endl;
+	affichageTemps(start);
+
+	// Algorithme Probabiliste en partant d'une enum aleatoire et en completant
+	start = std::chrono::high_resolution_clock::now();
+	int prob2 = g->algorithmeProbabilisteAvecDecoupage(false,false,true);
+	std::cout << std::endl << "L'algorithme probabiliste calcule une solution de " << prob2 << std::endl;
+	affichageTemps(start);
+	//g->fichierSage(dossierSauvegarde + "prob.sage.descriptor");
+	//std::cout << dossierSauvegarde << "prob.sage.descriptor créé." << std::endl;
 
     // Heuristique limité à une taille de 10
     start = std::chrono::high_resolution_clock::now();
     int heuristique = g->heuristiqueDenombrement(false, 10, false);
-    std::cout << std::endl << "L'heuristique limité à 10 calcul une solution de " << heuristique << std::endl;
+    std::cout << std::endl << "L'heuristique limité à 10 calcule une solution de " << heuristique << std::endl;
     affichageTemps(start);
-    g->fichierSage(dossierSauvegarde + "heuristiqueLimite10.sage.descriptor");
-    std::cout << dossierSauvegarde << "heuristiqueLimite10.sage.descriptor créé." << std::endl;
+    //g->fichierSage(dossierSauvegarde + "heuristiqueLimite10.sage.descriptor");
+    //std::cout << dossierSauvegarde << "heuristiqueLimite10.sage.descriptor créé." << std::endl;
 
     // Heuristique
     start = std::chrono::high_resolution_clock::now();
     int heuristiqueNolim = g->heuristiqueDenombrement(false, 50, false);
-    std::cout << std::endl << "L'heuristique sans limite calcul une solution de " << heuristiqueNolim << std::endl;
+    std::cout << std::endl << "L'heuristique sans limite calcule une solution de " << heuristiqueNolim << std::endl;
     affichageTemps(start);
-    g->fichierSage(dossierSauvegarde + "heuristique.sage.descriptor");
-    std::cout << dossierSauvegarde << "heuristique.sage.descriptor créé." << std::endl;
+    //g->fichierSage(dossierSauvegarde + "heuristique.sage.descriptor");
+    //std::cout << dossierSauvegarde << "heuristique.sage.descriptor créé." << std::endl;
 
-    // Algorithme exact simplifié
+    // Algorithme exact
     start = std::chrono::high_resolution_clock::now();
     int exactSimple = g->algorithmeExact(true, false);
-    std::cout << std::endl << "La valeur optimal est " << exactSimple << std::endl;
+    std::cout << std::endl << "La valeur optimale est (sans decoupage) " << exactSimple << std::endl;
     affichageTemps(start);
     g->fichierSage(dossierSauvegarde + "exactSimple.sage.descriptor");
     std::cout << dossierSauvegarde << "exactSimple.sage.descriptor créé." << std::endl;
 
-    // Algorithme exact
+    // Algorithme exact simplifié
     start = std::chrono::high_resolution_clock::now();
-    int exact = g->algorithmeExact(false, false);
-    std::cout << std::endl << "La valeur optimal est " << exact << std::endl;
+    int exactSimpleD = g->algorithmeExactAvecDecoupage(true, false);
+    std::cout << std::endl << "La valeur optimale est (avec decoupage) " << exactSimpleD << std::endl;
     affichageTemps(start);
-    g->fichierSage(dossierSauvegarde + "exact.sage.descriptor");
-    std::cout << dossierSauvegarde << "exact.sage.descriptor créé." << std::endl;
+    g->fichierSage(dossierSauvegarde + "exactSimple.sage.descriptor");
+    std::cout << dossierSauvegarde << "exactSimple.sage.descriptor créé." << std::endl;
 
+/*
     // On affiche l'énumération trouvée par le dernier algorithme exact
     const std::vector<int> &enumeration = g->enumeration();
-    std::cout << std::endl << "L'énumération trouvé est :" << std::endl;
+    std::cout << std::endl << "L'énumération trouvée est :" << std::endl;
     for (int e : enumeration) {
         std::cout << e << " ";
     }
-    std::cout << std::endl;
+    std::cout << std::endl;*/
 }
 
 
@@ -142,6 +164,19 @@ int main() {
     fichierAretesNoires = "../data/aretes/6_34sommets/6_aretesNoires";
     fichierAretesVertes = "../data/aretes/6_34sommets/6_aretesVertes";
     testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./6_34sommets/");
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    std::cout << "========== Test 7 ==========" << std::endl;
+    n = 211; // Nombre d'arêtes dans le graphe noté de 0 à n-1
+    fichierAretesNoires = "../data/aretes/7_210sommets/7_aretesNoires";
+    fichierAretesVertes = "../data/aretes/7_210sommets/7_aretesVertes";
+    testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./7_34sommets/");
+    ////////////////////////////////////////////////////////////////////////////////////////////
+	std::cout << "========== Test 8 ==========" << std::endl;
+	n = 8; // Nombre d'arêtes dans le graphe noté de 0 à n-1
+	fichierAretesNoires = "../data/aretes/8_complet/8_aretesNoires";
+	fichierAretesVertes = "../data/aretes/8_complet/8_aretesVertes";
+	testLinearisationEnumeration(n, fichierAretesNoires, fichierAretesVertes, "./8_complet/");
 
     ////////////////////////////////////////////////////////////////////////////////////////////
     std::cout << "========== Moustique ==========" << std::endl;

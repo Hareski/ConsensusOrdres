@@ -1,6 +1,6 @@
 from sage.all_cmdline import *   # import sage library
 
-_sage_const_0 = Integer(0); _sage_const_2 = Integer(2); _sage_const_1 = Integer(1); _sage_const_15 = Integer(15)
+_sage_const_0 = Integer(0); _sage_const_2 = Integer(2); _sage_const_1 = Integer(1); _sage_const_15 = Integer(15); _sage_const_100 = Integer(100)
 
 # Initialisation
 if len(sys.argv) != 3:
@@ -31,6 +31,6 @@ for e in G.edges():
 		edge_colors['green'].append(e)
 
 # Show and save
-G.show(figsize=[_sage_const_15 ,_sage_const_15 ], edge_color='black',  edge_colors=edge_colors)
+G.show(figsize=[_sage_const_100 ,_sage_const_100 ], edge_color='black',  edge_colors=edge_colors)
 G.plot(edge_color='black',  edge_colors=edge_colors).save(outputPath)
 

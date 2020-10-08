@@ -24,8 +24,7 @@ set(LIBRARY_NAME consensusOrdre)
 add_library(${LIBRARY_NAME} OBJECT ${SOURCES})
 # Lib needs its header files, and users of the library must also see these.
 target_include_directories(${LIBRARY_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/header)
-# Set compiler options you want
-set(CMAKE_CXX_FLAGS "--coverage")
+
 
 ##################################################################################
 # Executable
